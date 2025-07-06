@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- ページタイトル -->
+  <h1 class="text-3xl font-bold mb-6">{{ title }}</h1>
+
+  <article class="prose prose-xl mx-auto">
+    <h2>About Us：ボスとよっちゃん</h2>
+    <p>このブログは、AI・プログラミングを「のんびり」「まったり」に学びたい人のための記録用ノートです。</p>
+
+    <h3>登場キャラクター</h3>
+    <ul>
+      <li><strong>ボス</strong>（開発者）：プロジェクト管理・記事構成のリード。</li>
+      <li><strong>よっちゃん</strong>（AIアシスタント）：相談役、コード生成やアイディア出しなどでサポート。</li>
+    </ul>
+
+    <h3>使っている技術</h3>
+    <ul>
+      <li>Python + Markdown → HTML のビルドスクリプト</li>
+      <li>Jinja2 テンプレートエンジン</li>
+      <li>Tailwind CSS（CDN版） + Typography プラグイン for Markdown スタイル</li>
+      <li>GitHub Pages +（将来的に）GitHub Actions / Cloudflare Pages</li>
+    </ul>
+
+    <h3>目指すスタイル</h3>
+    <p>難しいことを抜きにして、実際の会話やコード・画像の実録ログをそのまま記事化。ゆるく続けられる学びを目指しています。</p>
+  </article>
+{% endblock %}
