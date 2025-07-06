@@ -1,58 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <title>記事一覧 – oikko のんびりAIプログラミングノート</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>oikko のんびりAIプログラミングノート</title>
-  <!-- Tailwind Play CDN: ミニマルデザインにも最適なユーティリティを即利用 -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="bg-white text-gray-800 font-sans leading-relaxed">
-  <header class="max-w-3xl mx-auto mt-8">
-    <!-- ヒーローバナー -->
-    <img src="/img/header_banner.png"
-         alt="oikko のんびりAIプログラミングノート"
-         class="w-full h-64 object-cover rounded-lg shadow-sm" />
-    <!-- タイトル -->
-    <h1 class="mt-6 text-3xl font-semibold text-gray-900 tracking-tight">
-      oikko のんびりAIプログラミングノート
-    </h1>
-    <p class="mt-2 text-base text-gray-600">
-      Mellow AI Programming Notes
-    </p>
+<body class="bg-gray-50 text-gray-900 font-sans leading-relaxed">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 bg-white shadow z-50">
+    <div class="max-w-3xl mx-auto flex items-center justify-between px-4 py-4">
+      <!-- サイトタイトル -->
+      <a href="/" class="text-xl font-bold text-gray-900">
+        oikko のんびりAIプログラミングノート
+      </a>
+      <!-- ナビリンク -->
+      <nav class="hidden md:flex space-x-6 text-gray-700">
+        <a href="/index.html"
+           class="hover:text-gray-900 font-semibold text-gray-900">
+          記事一覧
+        </a>
+        <a href="/about.html"
+           class="hover:text-gray-900 ">
+          About
+        </a>
+      </nav>
+      <!-- モバイルメニュー -->
+      <button id="nav-toggle" class="md:hidden focus:outline-none">
+        <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
+        <span class="block w-6 h-0.5 bg-gray-700 mb-1"></span>
+        <span class="block w-6 h-0.5 bg-gray-700"></span>
+      </button>
+    </div>
+    <nav id="nav-menu-mobile" class="md:hidden hidden bg-white px-4 pb-4 space-y-2">
+      <a href="/index.html" class="block text-gray-700 hover:text-gray-900">記事一覧</a>
+      <a href="/about.html" class="block text-gray-700 hover:text-gray-900">About</a>
+    </nav>
   </header>
 
-<main class="max-w-3xl mx-auto mt-12 px-4">
-  <!-- ナビゲーション -->
-  <nav class="flex justify-start space-x-6 border-b pb-4">
-    <a href="/index.html" class="text-gray-700 hover:text-gray-900">ホーム</a>
-    <a href="/about.html" class="text-gray-700 hover:text-gray-900">About</a>
-  </nav>
+  <!-- MAIN CONTENT -->
+  <main class="max-w-3xl mx-auto mt-8 px-4 prose prose-lg">
+  <h1 class="text-3xl font-bold mb-6">記事一覧</h1>
+  <ul class="space-y-6">
+      <li>
+        <a href="articles/001-first-step.html"
+           class="text-indigo-600 hover:underline text-lg">
+          001-first-step
+        </a>
+      </li>
+  </ul>
+  </main>
 
-  <!-- ようこそセクション -->
-  <section class="mt-10">
-    <h2 class="text-2xl font-medium text-gray-900 mb-3">ようこそ</h2>
-    <p class="text-lg text-gray-700">
-      このサイトでは、AIを使ったまったりプログラミングの記録を綴っています。余計な装飾を排したミニマルな空間で、最新の記事をご覧ください。
-    </p>
-  </section>
-
-  <!-- 記事一覧 -->
-  <section class="mt-12">
-    <h2 class="text-2xl font-medium text-gray-900 mb-4">記事一覧</h2>
-    <ul class="space-y-4">
-        <li>
-          <a href="/articles/001-first-step.html"
-             class="text-blue-600 hover:underline">
-            001 first step
-          </a>
-        </li>
-    </ul>
-  </section>
-</main>
-
-  <footer class="max-w-3xl mx-auto mt-16 pb-8 text-center text-sm text-gray-500">
+  <!-- FOOTER -->
+  <footer class="max-w-3xl mx-auto mt-16 pb-8 px-4 text-center text-sm text-gray-500">
     &copy; 2025 oikko のんびりAIプログラミングノート
   </footer>
+
+  <script>
+    document.getElementById("nav-toggle")
+      .addEventListener("click", () =>
+        document.getElementById("nav-menu-mobile").classList.toggle("hidden")
+      );
+  </script>
 </body>
 </html>
