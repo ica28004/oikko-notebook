@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <!-- Tailwind Play CDN: ミニマルデザインにも最適なユーティリティを即利用 -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-white text-gray-800 font-sans leading-relaxed">
+  <header class="max-w-3xl mx-auto mt-8">
+    <!-- ヒーローバナー -->
+    <img src="/img/header_banner.png"
+         alt="oikko のんびりAIプログラミングノート"
+         class="w-full h-64 object-cover rounded-lg shadow-sm" />
+    <!-- タイトル -->
+    <h1 class="mt-6 text-3xl font-semibold text-gray-900 tracking-tight">
+      oikko のんびりAIプログラミングノート
+    </h1>
+    <p class="mt-2 text-base text-gray-600">
+      Mellow AI Programming Notes
+    </p>
+  </header>
+
+  {% block content %}{% endblock %}
+
+  <footer class="max-w-3xl mx-auto mt-16 pb-8 text-center text-sm text-gray-500">
+    &copy; 2025 oikko のんびりAIプログラミングノート
+  </footer>
+</body>
+</html>
