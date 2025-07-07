@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: 📥 リポジトリをチェックアウト
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true  # ← コレが重要！
 
       - name: 🐍 Python をセットアップ
         uses: actions/setup-python@v4
@@ -23,7 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install markdown jinja2
 
-      - name: 🛠 HTMLビルドを実行（scripts/build.py）
+      - name: 🛠 HTMLビルドを実行
         run: |
           python scripts/build.py
 
@@ -31,6 +33,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # ルート（index.htmlやarticlesなど）
+          publish_dir: ./
           publish_branch: gh-pages
           keep_files: true
