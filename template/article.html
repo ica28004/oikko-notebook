@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-  <!-- ページタイトル（ファイル名） -->
+  <!-- ページタイトル -->
   <h1 class="text-3xl font-bold mb-6">{{ title }}</h1>
 
-  <!-- Markdown→HTML 変換結果 -->
+  <!-- Markdown→HTML変換済の本文 -->
   {{ content | safe }}
 {% endblock %}
