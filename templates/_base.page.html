@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}{{ site_name }}{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+  <!-- ヘッダー：藍色背景＋イラスト -->
+  <header class="bg-aiiro text-white text-center py-8">
+    <img src="/static/images/top_illustration.png" alt="トップ画像" class="illustration mb-4" />
+    <h1 class="text-3xl font-bold">{{ site_name }}</h1>
+    <nav class="flex flex-wrap justify-center gap-3 mt-4 text-sm">
+      <a href="/index.html" class="bg-white/20 px-4 py-1 rounded-full backdrop-blur hover:underline">🏠 ホーム</a>
+      <a href="/about.html" class="bg-white/20 px-4 py-1 rounded-full backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
+    </nav>
+  </header>
+
+  <!-- 本文：波模様背景にカードでくくる -->
+  <main class="bg-washi py-10 min-h-[60vh]">
+    <section class="card max-w-3xl mx-auto px-6 py-8">
+      {% block content %}{% endblock %}
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    © 2025 {{ site_name }}
+  </footer>
+
+</body>
+</html>
