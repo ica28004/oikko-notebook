@@ -2,45 +2,60 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>記事一覧 – oikko のんびりAIプログラミングノート</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oikko のんびりAIプログラミングノート</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
   <link href="/static/css/style.css" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-[#0f2e3e] text-[#1a1a1a]">
 
-  <!-- ヘッダー：藍色背景＋イラスト -->
-  <header class="bg-aiiro text-white text-center py-8">
-    <img src="/static/images/top_illustration.png" alt="トップ画像" class="illustration mb-4" />
-    <h1 class="text-3xl font-bold">oikko のんびりAIプログラミングノート</h1>
-    <nav class="flex flex-wrap justify-center gap-3 mt-4 text-sm">
-      <a href="/index.html" class="bg-white/20 px-4 py-1 rounded-full backdrop-blur hover:underline">🏠 ホーム</a>
-      <a href="/about.html" class="bg-white/20 px-4 py-1 rounded-full backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
+  <!-- ヘッダー -->
+  <header class="bg-wave text-white py-10 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      oikko
+    </h1>
+    <p class="text-xl mt-2 drop-shadow-md text-white">
+      のんびりAIプログラミングノート
+    </p>
+
+    <nav class="flex flex-wrap justify-center gap-4 mt-6">
+      <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
+      <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
     </nav>
   </header>
 
-  <!-- 本文：波模様背景にカードでくくる -->
-  <main class="bg-washi py-10 min-h-[60vh]">
-    <section class="card max-w-3xl mx-auto px-6 py-8">
+  <!-- メイン -->
+  <main class="washi-box px-4 py-12">
+    <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
       
-<h1 class="text-2xl font-bold mb-6">📚 記事一覧</h1>
-<ul class="space-y-4">
-  
-    <li>
-      <a href="articles/001-first-step.html" class="text-indigo-700 hover:underline font-semibold">
-        001 first step
-      </a>
-    </li>
-  
-</ul>
 
-    </section>
+  <!-- アイキャッチ画像 -->
+  <img src="/static/images/top_illustration.png" alt="和風イラスト" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 見出し -->
+  <h2 class="text-xl font-bold flex items-center gap-2 text-[#0f2e3e]">
+    <span>📚</span> 記事一覧
+  </h2>
+
+  <!-- 記事一覧 -->
+  <ul class="mt-4 space-y-3 text-sm">
+    
+      <li>
+        <a href="articles/001-first-step.html" class="text-blue-800 hover:text-blue-500 underline">
+          001 first step
+        </a>
+      </li>
+    
+  </ul>
+
+
+    </div>
   </main>
 
   <!-- フッター -->
-  <footer>
+  <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
     © 2025 oikko のんびりAIプログラミングノート
   </footer>
-
 </body>
 </html>

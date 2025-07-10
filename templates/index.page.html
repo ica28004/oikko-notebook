@@ -1,14 +1,24 @@
 {% extends "_base.page.html" %}
-{% block title %}記事一覧 – {{ site_name }}{% endblock %}
+
 {% block content %}
-<h1 class="text-2xl font-bold mb-6">📚 記事一覧</h1>
-<ul class="space-y-4">
-  {% for article in articles %}
-    <li>
-      <a href="{{ article.url }}" class="text-indigo-700 hover:underline font-semibold">
-        {{ article.title }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
+
+  <!-- アイキャッチ画像 -->
+  <img src="/static/images/top_illustration.png" alt="和風イラスト" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 見出し -->
+  <h2 class="text-xl font-bold flex items-center gap-2 text-[#0f2e3e]">
+    <span>📚</span> 記事一覧
+  </h2>
+
+  <!-- 記事一覧 -->
+  <ul class="mt-4 space-y-3 text-sm">
+    {% for article in articles %}
+      <li>
+        <a href="{{ article.url }}" class="text-blue-800 hover:text-blue-500 underline">
+          {{ article.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+
 {% endblock %}
