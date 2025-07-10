@@ -1,0 +1,23 @@
+{% extends "_base.page.html" %}
+
+{% block content %}
+
+  <!-- アイキャッチ画像（任意） -->
+  <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 記事タイトル -->
+  <h1 class="text-2xl font-bold text-[#0f2e3e] mb-2">
+    {{ title }}
+  </h1>
+
+  <!-- 投稿日・カテゴリ（任意） -->
+  {% if date %}
+    <p class="text-xs text-gray-500 mb-6">📅 {{ date }}</p>
+  {% endif %}
+
+  <!-- Markdown本文挿入 -->
+  <div class="text-sm leading-loose text-[#333] prose prose-sm max-w-none">
+    {{ content | safe }}
+  </div>
+
+{% endblock %}
