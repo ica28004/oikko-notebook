@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oikko のんびりAIプログラミングノート</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0f2e3e] text-[#1a1a1a]">
+
+  <!-- ヘッダー -->
+  <header class="bg-wave text-white py-10 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      oikko
+    </h1>
+    <p class="text-xl mt-2 drop-shadow-md text-white">
+      のんびりAIプログラミングノート
+    </p>
+
+    <nav class="flex flex-wrap justify-center gap-4 mt-6">
+      <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
+      <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
+    </nav>
+  </header>
+
+  <!-- メイン -->
+  <main class="washi-box px-4 py-12">
+    <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+      
+
+  <!-- アイキャッチ画像（任意） -->
+  <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 記事タイトル -->
+  <h1 class="text-2xl font-bold text-[#0f2e3e] mb-2">
+    001 first step
+  </h1>
+
+  <!-- 投稿日・カテゴリ（任意） -->
+  
+
+  <!-- Markdown本文挿入 -->
+  <div class="text-sm leading-loose text-[#333] prose prose-sm max-w-none">
+    <h1>第一歩：プロジェクトの骨組みを作る</h1>
+<p>初めまして、<strong>ボス</strong>です！
+このシリーズ第1話では、Markdown → HTMLに変換するビルドスクリプトと、Jinja2＋TailwindCSSを使ったテンプレートで、最低限動く状態のサイトを構築します。</p>
+<hr />
+<h2>👢 プロジェクト構成を確認しよう（2025年版）</h2>
+<p>リポジトリのルート構成を再確認しましょう（主要ファイルのみ抜粋）：</p>
+<pre><code class="language-bash">oikko-notebook/
+├── articles/
+│   └── 001-first-step.html
+├── img/
+│   └── header_banner.png
+├── posts/
+│   └── 001-first-step.md
+├── scripts/
+│   └── build.py
+├── style.css
+└── template/
+    ├── about.html
+    ├── base.html
+    └── index.html
+</code></pre>
+<ul>
+<li><strong>posts/</strong>：Markdownで記事を書くディレクトリ</li>
+<li><strong>articles/</strong>：ビルド後のHTML出力先</li>
+<li><strong>template/</strong>：Jinja2テンプレート（共通レイアウト）</li>
+<li><strong>scripts/</strong>：ビルドスクリプトを格納</li>
+<li><strong>img/</strong>：ヘッダ画像など素材類</li>
+<li><strong>style.css</strong>：Tailwindに加えるカスタムスタイル</li>
+</ul>
+<hr />
+<h2>🤖 よっちゃんとボスの会話ログ</h2>
+<blockquote>
+<p>✨ <strong>よっちゃん</strong>：いまの <code>build.py</code> はどんな流れで記事を出力するんでしたっけ？</p>
+<p><strong>ボス</strong>：<code>posts/*.md</code> を読み込んで HTML に変換、それを <code>articles/</code> に出力。<code>index.html</code> と <code>about.html</code> もテンプレートから出力されるよ。</p>
+<p><strong>よっちゃん</strong>：出力されるタイトルはファイル名ベースにしてましたよね？</p>
+<p><strong>ボス</strong>：うん、<code>001-first-step.md</code> なら <code>001-first-step.html</code> になるし、表示タイトルも "001-first-step" にしてる。</p>
+<p><strong>よっちゃん</strong>：じゃあ今回の仕様反映後も、記事タイトルが画面上部に出てるか確認しておきましょう。</p>
+</blockquote>
+<hr />
+<h2>▶️ 手順1：ビルドを実行しよう</h2>
+<p>以下のコマンドでビルドできます：</p>
+<pre><code class="language-bash">python3 scripts/build.py
+</code></pre>
+<ul>
+<li><code>articles/001-first-step.html</code> が生成されます</li>
+<li><code>index.html</code>, <code>about.html</code> も再出力されます</li>
+</ul>
+<hr />
+<h2>💻 手順2：テンプレート構造を確認</h2>
+<p>以下は <code>template/base.html</code> の構造サンプルです：</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;{{ title }} – oikko のんびりAIプログラミングノート&lt;/title&gt;
+  &lt;link href=&quot;/style.css&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;… ナビなど共通部分 …&lt;/header&gt;
+  &lt;main&gt;
+    {% block content %}{{ content | safe }}{% endblock %}
+  &lt;/main&gt;
+  &lt;footer&gt;… フッター共通部分 …&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li><code>&lt;main&gt;</code> ブロック内に記事本文が展開されます</li>
+<li><code>title</code> 変数はビルドスクリプトでファイル名から自動生成</li>
+</ul>
+<hr />
+<h2>✅ まとめ</h2>
+<ol>
+<li><code>scripts/build.py</code> を実行してビルドする</li>
+<li><code>index.html</code> と <code>about.html</code>、および <code>articles/*.html</code> を出力確認</li>
+<li>Markdown記事を更新したら再ビルド</li>
+</ol>
+<hr />
+<p>これでサイトの「骨組み」が完成しました！
+次回は、<strong>複数記事の自動展開</strong>や<strong>会話ベースの見せ方強化</strong>について進めていきます。</p>
+<p>おたのしみに！</p>
+  </div>
+
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
+    © 2025 oikko のんびりAIプログラミングノート
+  </footer>
+</body>
+</html>
