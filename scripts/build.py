@@ -83,16 +83,18 @@ print("📚 トップページ: output/index.html を生成")
 # ──────────────────────────────
 # 3. aboutページ
 # ──────────────────────────────
-about_md = POSTS_DIR / "about.md"
-if about_md.exists():
-    about_text = about_md.read_text(encoding="utf-8")
-    about_html = markdown.markdown(about_text, extensions=["fenced_code"])
-    about_template = env.get_template("about.page.html")
-    rendered_about = about_template.render(
-        content=about_html,
+about_md_path = POSTS_DIR / "about.md"
+if about_md_path.exists():
+    # about.mdを読み込んでHTMLに変換
+    post = frontmatter.load(about_md_path)
+    html_content = markdown.markdown(post.content, extensions=["fenced_code", "tables"])
+
+    template = env.get_template("about.page.html")
+    rendered_html = template.render(
+        content=html_content,
         site_name=site_name
     )
-    (OUTPUT_DIR / "about.html").write_text(rendered_about, encoding="utf-8")
-    print("👤 アバウトページ: output/about.html を生成")
+    (OUTPUT_DIR / "about.html").write_text(rendered_html, encoding="utf-8")
+    print(f"👤 アバウトページ: output/about.html を生成")
 else:
     print("⚠️ posts/about.md が見つかりません。aboutページはスキップされました。")
