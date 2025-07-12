@@ -6,7 +6,7 @@
   <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
 
   <!-- 記事タイトル -->
-  <h1 class="text-2xl font-bold text-[#0f2e3e] mb-2">
+  <h1 class="text-4xl font-bold mb-4 text-gray-800">
     {{ title | default('No Title') }}
   </h1>
 
@@ -16,7 +16,7 @@
   {% endif %}
 
   <!-- Markdown本文挿入 -->
-  <div class="text-sm leading-loose text-[#333] prose prose-sm max-w-none">
+  <div class="prose lg:prose-xl max-w-none">
     {{ content | safe }}
   </div>
 
