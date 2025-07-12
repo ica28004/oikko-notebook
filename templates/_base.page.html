@@ -1,39 +1,52 @@
+<!--
+  templates/_base.page.html
+  このファイルはサイト全体の共通レイアウトを定義する「ベーステンプレート」です。
+  各ページ（記事、トップ、アバウトなど）はこのファイルを継承して作成されます。
+-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 子テンプレートが独自のタイトルを挿入するためのプレースホルダー。デフォルトではサイト名が表示されます。 -->
   <title>{% block title %}{{ site_name }}{% endblock %}</title>
+  <!-- Google Fonts (Noto Sans JP) を読み込みます -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <!-- サイト共通のカスタムCSSファイルを読み込みます -->
   <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- Tailwind CSSのCDNを読み込み、タイポグラフィプラグインを有効にします -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <!-- Google Analyticsのトラッキングコードを含む別ファイルをここに挿入します -->
   {% include "_ga.html" %}
 </head>
 <body class="bg-[#0f2e3e] text-[#1a1a1a]">
 
-  <!-- ヘッダー -->
+  <!-- ヘッダーセクション: サイトのタイトルとナビゲーションを表示します -->
   <header class="bg-wave text-white py-10 text-center">
     <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      <!-- ビルドスクリプトから渡されたサイト名を表示します -->
       {{ site_name.split(' ')[0] }}
     </h1>
     <p class="text-xl mt-2 drop-shadow-md text-white">
       {{ site_name.split(' ', 1)[1] if ' ' in site_name else '' }}
     </p>
 
+    <!-- ナビゲーションメニュー -->
     <nav class="flex flex-wrap justify-center gap-4 mt-6">
       <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
       <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
     </nav>
   </header>
 
-  <!-- メイン -->
+  <!-- メインコンテンツセクション: 各ページ固有のコンテンツがここに表示されます -->
   <main class="washi-box px-4 py-12">
     <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+      <!-- このブロックが、記事本文などの子テンプレートのメインコンテンツに置き換えられます -->
       {% block content %}{% endblock %}
     </div>
   </main>
 
-  <!-- フッター -->
+  <!-- フッターセクション: コピーライト情報を表示します -->
   <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
     © 2025 {{ site_name }}
   </footer>
