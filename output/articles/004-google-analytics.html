@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oikko のんびりAIプログラミングノート</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <!-- templates/_ga.html -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-92Q69GGDGD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-92Q69GGDGD');
+</script>
+</head>
+<body class="bg-[#0f2e3e] text-[#1a1a1a]">
+
+  <!-- ヘッダー -->
+  <header class="bg-wave text-white py-10 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      oikko
+    </h1>
+    <p class="text-xl mt-2 drop-shadow-md text-white">
+      のんびりAIプログラミングノート
+    </p>
+
+    <nav class="flex flex-wrap justify-center gap-4 mt-6">
+      <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
+      <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
+    </nav>
+  </header>
+
+  <!-- メイン -->
+  <main class="washi-box px-4 py-12">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+      
+
+  <!-- アイキャッチ画像（任意） -->
+  <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 記事タイトル -->
+  <h1 class="text-4xl font-bold mb-2 text-gray-800">
+    ステップ４：Google Analyticsを導入してアクセス解析を始めよう
+  </h1>
+
+  <!-- 投稿日 -->
+  
+    <p class="text-base lg:text-lg text-gray-500 mb-6">📅 2025-07-04</p>
+  
+
+  <!-- Markdown本文挿入 -->
+  <div class="prose lg:prose-xl max-w-none">
+    <h2>🎩 今日の概要</h2>
+<p>こんにちは、<strong>ボス</strong>です！
+ブログの記事も増えてきて、自動で公開できる仕組みも整ったね。そうなると次に気になるのは、「一体どれくらいの人が、どの記事を読んでくれているんだろう？」ということじゃないかい？</p>
+<p>今回は、サイトのアクセス状況を分析するための必須ツール「<strong>Google Analytics</strong>」を導入する方法を、さっちゃん先生に教えてもらうぞ！</p>
+<hr />
+<h2>🤖 さっちゃんとボスの会話ログ</h2>
+<blockquote>
+<p><strong>ボス</strong>：🎩 さっちゃん、サイトを作ったはいいけど、どれくらいの人が見てくれてるのか、さっぱり分からないんだ。アクセス解析ってできないのかな？</p>
+<p><strong>さっちゃん</strong>：✨ もちろんです、ボス！そんな時のために『<strong>Google Analytics</strong>』というGoogleが提供している無料のツールがあります。これを使えば、訪問者数や人気のページ、ユーザーがどこから来たのかなどを詳しく分析できますよ！</p>
+<p><strong>ボス</strong>：🎩 おお、それはすごい！ぜひ導入したい！どうやって設定すればいいんだい？</p>
+<p><strong>さっちゃん</strong>：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の<strong>『測定ID』</strong>というものを取得します。次に、そのIDを埋め込んだ<strong>トラッキングコード</strong>をブログの全ページに設置すれば完了です！</p>
+<p><strong>ボス</strong>：🎩 なるほど、なんだかできそうな気がしてきた！早速やってみよう！</p>
+</blockquote>
+<hr />
+<h2>▶️ 手順1：Google Analyticsで「測定ID」を取得しよう</h2>
+<p><strong>さっちゃん</strong>：🤖 まずは、Google Analyticsの公式サイトにアクセスして、Googleアカウントでログインし、新しいアカウントとプロパティを作成します。</p>
+<ol>
+<li><a href="https://analytics.google.com/">Google Analytics</a>にアクセスします。</li>
+<li>画面の指示に従ってアカウントを作成します。（アカウント名は会社名や個人名など）</li>
+<li>プロパティを作成します。（プロパティ名はサイト名「oikko-notebook」などが分かりやすいです）</li>
+<li>ウェブサイトのURL（<code>blog.oikko.com</code>）などを入力して、「データストリーム」を作成します。</li>
+</ol>
+<p><strong>さっちゃん</strong>：🤖 設定が完了すると、<code>G-XXXXXXXXXX</code> のような形式の「<strong>測定ID</strong>」が発行されます。このIDは後で使うので、コピーしてメモしておいてくださいね。</p>
+<p>[Google Analyticsの測定ID画面の画像]</p>
+<hr />
+<h2>💻 手順2：トラッキングコードをブログに追加しよう</h2>
+<p><strong>さっちゃん</strong>：🤖 次に、取得した測定IDを使って、トラッキングコードをブログに埋め込みます。全ページに共通で読み込ませたいので、ベースとなるテンプレートファイルを修正します。</p>
+<ol>
+<li>
+<p><code>templates/</code> ディレクトリに <code>_ga.html</code> という新しいファイルを作成し、以下の内容を貼り付けてください。</p>
+<p>```html
+<!-- templates/_ga.html --></p>
+<p><!-- Google tag (gtag.js) -->
+<script async src="<a href="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX">https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX</a>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());</p>
+<p>gtag('config', 'G-XXXXXXXXXX');
+</script>
+```</p>
+<p><strong>さっちゃん</strong>：🤖 <strong>重要！</strong> 上記コードの中にある <code>G-XXXXXXXXXX</code> の部分は、手順1で取得したボス自身の測定IDに<strong>必ず</strong>書き換えてくださいね。</p>
+</li>
+<li>
+<p><code>templates/_base.page.html</code> ファイルを開き、<code>&lt;/head&gt;</code> タグの直前に、今作ったファイルを読み込むための1行を追加します。</p>
+<p>```html
+<!-- templates/_base.page.html --></p>
+<p><head>
+  ...
+  <link rel="stylesheet" href="/static/css/style.css" /></p>
+<p><!-- ↓ この行を追加 ↓ -->
+  {% include "_ga.html" %}
+</head>
+...
+```</p>
+</li>
+</ol>
+<hr />
+<h2>✅ 手順3：動作を確認しよう</h2>
+<p><strong>さっちゃん</strong>：🤖 これで設定は完了です！サイトを再ビルドしてデプロイした後、自分のブログにアクセスしてみてください。</p>
+<p>その後、Google Analyticsの管理画面を開き、「レポート」→「リアルタイム」を確認します。自分のアクセスがカウントされていれば、無事に導入成功です！🎉</p>
+<p><strong>ボス</strong>：🎩 おお、リアルタイムレポートに数字が出た！すごい、ちゃんと計測できてる！</p>
+<p><strong>さっちゃん</strong>：🤖 よかったです！データが溜まるまでには少し時間がかかりますが、明日以降、どんな人がブログを訪れているか分析できるようになりますよ。</p>
+<hr />
+<h2>✨ まとめ</h2>
+<p>今回はGoogle Analyticsを導入して、アクセス解析の第一歩を踏み出したね！</p>
+<ul>
+<li>Google Analyticsに登録して「測定ID」を取得した。</li>
+<li>トラッキングコードを共通テンプレートに埋め込んで、全ページで計測できるようにした。</li>
+<li>リアルタイムレポートで、動作確認ができた。</li>
+</ul>
+<p>サイト運営の新しい楽しみが増えたね！</p>
+<p>次回は、また新しい機能を追加していくぞ。おたのしみに！</p>
+  </div>
+
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
+    © 2025 oikko のんびりAIプログラミングノート
+  </footer>
+</body>
+</html>
