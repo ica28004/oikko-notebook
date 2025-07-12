@@ -66,7 +66,7 @@
 <p><strong>ボス</strong>：🎩 さっちゃん、サイトを作ったはいいけど、どれくらいの人が見てくれてるのか、さっぱり分からないんだ。アクセス解析ってできないのかな？</p>
 <p><strong>さっちゃん</strong>：✨ もちろんです、ボス！そんな時のために『<strong>Google Analytics</strong>』というGoogleが提供している無料のツールがあります。これを使えば、訪問者数や人気のページ、ユーザーがどこから来たのかなどを詳しく分析できますよ！</p>
 <p><strong>ボス</strong>：🎩 おお、それはすごい！ぜひ導入したい！どうやって設定すればいいんだい？</p>
-<p><strong>さっちゃん</strong>：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の<strong>『測定ID』</strong>というものを取得します。次に、そのIDを埋め込んだ<strong>トラッキングコード</strong>をブログの全ページに設置すれば完了です！</p>
+<p><strong>さちゃん</strong>：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の<strong>『測定ID』</strong>というものを取得します。次に、そのIDを埋め込んだ<strong>トラッキングコード</strong>をブログの全ページに設置すれば完了です！</p>
 <p><strong>ボス</strong>：🎩 なるほど、なんだかできそうな気がしてきた！早速やってみよう！</p>
 </blockquote>
 <hr />
@@ -78,53 +78,61 @@
 <li>プロパティを作成します。（プロパティ名はサイト名「oikko-notebook」などが分かりやすいです）</li>
 <li>ウェブサイトのURL（<code>blog.oikko.com</code>）などを入力して、「データストリーム」を作成します。</li>
 </ol>
-<p><strong>さっちゃん</strong>：🤖 設定が完了すると、<code>G-XXXXXXXXXX</code> のような形式の「<strong>測定ID</strong>」が発行されます。このIDは後で使うので、コピーしてメモしておいてくださいね。</p>
-<p>[Google Analyticsの測定ID画面の画像]</p>
+<p><strong>さっちゃん</strong>：🤖 設定が完了すると、<code>G-XXXXXXXXXX</code> のような形式の「<strong>測定ID</strong>」が発行されます。このIDは後で使うので、コピーしておいてくださいね。</p>
 <hr />
 <h2>💻 手順2：トラッキングコードをブログに追加しよう</h2>
 <p><strong>さっちゃん</strong>：🤖 次に、取得した測定IDを使って、トラッキングコードをブログに埋め込みます。全ページに共通で読み込ませたいので、ベースとなるテンプレートファイルを修正します。</p>
 <ol>
-<li>
-<p><code>templates/</code> ディレクトリに <code>_ga.html</code> という新しいファイルを作成し、以下の内容を貼り付けてください。</p>
-<p>```html
-<!-- templates/_ga.html --></p>
-<p><!-- Google tag (gtag.js) -->
-<script async src="<a href="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX">https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX</a>"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());</p>
-<p>gtag('config', 'G-XXXXXXXXXX');
-</script>
-```</p>
-<p><strong>さっちゃん</strong>：🤖 <strong>重要！</strong> 上記コードの中にある <code>G-XXXXXXXXXX</code> の部分は、手順1で取得したボス自身の測定IDに<strong>必ず</strong>書き換えてくださいね。</p>
-</li>
-<li>
-<p><code>templates/_base.page.html</code> ファイルを開き、<code>&lt;/head&gt;</code> タグの直前に、今作ったファイルを読み込むための1行を追加します。</p>
-<p>```html
-<!-- templates/_base.page.html --></p>
-<p><head>
-  ...
-  <link rel="stylesheet" href="/static/css/style.css" /></p>
-<p><!-- ↓ この行を追加 ↓ -->
-  {% include "_ga.html" %}
-</head>
-...
-```</p>
-</li>
+<li><code>templates/</code> ディレクトリに <code>_ga.html</code> という新しいファイルを作成し、以下の内容を貼り付けてください。</li>
 </ol>
+<pre><code class="language-html">&lt;!-- templates/_ga.html --&gt;
+
+&lt;!-- Google tag (gtag.js) --&gt;
+&lt;script async src=&quot;[https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX](https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX)&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-XXXXXXXXXX');
+&lt;/script&gt;
+</code></pre>
+<p><strong>さっちゃん</strong>：🤖 <strong>重要！</strong> 上記コードの中にある <code>G-XXXXXXXXXX</code> の部分は、手順1で取得したボス自身の測定IDに<strong>必ず</strong>書き換えてくださいね。</p>
+<ol>
+<li><code>templates/_base.page.html</code> ファイルを開き、<code>&lt;/head&gt;</code> タグの直前に、今作ったファイルを読み込むための1行を追加します。</li>
+</ol>
+<pre><code class="language-html">&lt;!-- templates/_base.page.html --&gt;
+
+&lt;head&gt;
+    ...
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;/static/css/style.css&quot; /&gt;
+
+    &lt;!-- ↓ この行を追加 ↓ --&gt;
+    {% include &quot;_ga.html&quot; %}
+&lt;/head&gt;
+...
+</code></pre>
 <hr />
 <h2>✅ 手順3：動作を確認しよう</h2>
 <p><strong>さっちゃん</strong>：🤖 これで設定は完了です！サイトを再ビルドしてデプロイした後、自分のブログにアクセスしてみてください。</p>
 <p>その後、Google Analyticsの管理画面を開き、「レポート」→「リアルタイム」を確認します。自分のアクセスがカウントされていれば、無事に導入成功です！🎉</p>
-<p><strong>ボス</strong>：🎩 おお、リアルタイムレポートに数字が出た！すごい、ちゃんと計測できてる！</p>
-<p><strong>さっちゃん</strong>：🤖 よかったです！データが溜まるまでには少し時間がかかりますが、明日以降、どんな人がブログを訪れているか分析できるようになりますよ。</p>
+<p><img alt="Google Analyticsの測定ID画面の画像" src="/static/images/analytics.png" /></p>
+<hr />
+<h2>🤔 ちょっと待った！はまりポイント</h2>
+<blockquote>
+<p><strong>ボス</strong>：🎩 さっちゃん、大変だ！リアルタイムレポートは確認できたんだけど、アナリティクスの管理画面で「タグ設定なし」って警告が出てるページがあるぞ？<code>about.html</code>みたいだ。</p>
+<p><strong>さっちゃん</strong>：🤖 本当ですか、ボス！…なるほど、原因が分かりました。これは、<code>about.html</code>だけが他のページと違う方法で作られているため、トラッキングコードを埋め込んだ共通のテンプレートが読み込まれていなかったんです。</p>
+<p><strong>ボス</strong>：🎩 そうだったのか！どうすれば解決できるんだい？</p>
+<p><strong>さちゃん</strong>：🤖 はい！<code>scripts/build.py</code>を少し修正して、<code>about.html</code>も他のページと同じ仕組みで生成するように変更すれば解決します。具体的には、静的ファイルをコピーする処理をやめて、Jinja2でレンダリングするようにします。</p>
+<p><strong>ボス</strong>：🎩 なるほど、全てのページで共通の仕組みを使うように統一するんだね。勉強になるな。ありがとう！</p>
+</blockquote>
 <hr />
 <h2>✨ まとめ</h2>
 <p>今回はGoogle Analyticsを導入して、アクセス解析の第一歩を踏み出したね！</p>
 <ul>
 <li>Google Analyticsに登録して「測定ID」を取得した。</li>
 <li>トラッキングコードを共通テンプレートに埋め込んで、全ページで計測できるようにした。</li>
+<li>途中で<code>about.html</code>が計測されない問題があったけど、ビルドスクリプトを修正して解決できた。</li>
 <li>リアルタイムレポートで、動作確認ができた。</li>
 </ul>
 <p>サイト運営の新しい楽しみが増えたね！</p>
