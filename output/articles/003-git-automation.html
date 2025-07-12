@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oikko のんびりAIプログラミングノート</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+</head>
+<body class="bg-[#0f2e3e] text-[#1a1a1a]">
+
+  <!-- ヘッダー -->
+  <header class="bg-wave text-white py-10 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      oikko
+    </h1>
+    <p class="text-xl mt-2 drop-shadow-md text-white">
+      のんびりAIプログラミングノート
+    </p>
+
+    <nav class="flex flex-wrap justify-center gap-4 mt-6">
+      <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
+      <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
+    </nav>
+  </header>
+
+  <!-- メイン -->
+  <main class="washi-box px-4 py-12">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+      
+
+  <!-- アイキャッチ画像（任意） -->
+  <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 記事タイトル -->
+  <h1 class="text-4xl font-bold mb-2 text-gray-800">
+    ステップ３：Gitを使って記事の公開を自動化しよう
+  </h1>
+
+  <!-- 投稿日 -->
+  
+    <p class="text-base lg:text-lg text-gray-500 mb-6">📅 2025-07-13</p>
+  
+
+  <!-- Markdown本文挿入 -->
+  <div class="prose lg:prose-xl max-w-none">
+    <h2>🎩 今日の概要</h2>
+<p>こんにちは、<strong>ボス</strong>です！
+ステップ２までで、ブログの見た目もだいぶ整ってきたね。でも、記事を公開するたびに手元でコマンドを打って、生成されたファイルをGitHubにアップロードする…という作業、正直ちょっと面倒じゃないかい？</p>
+<p>今回は、その面倒な作業を<strong>完全に自動化</strong>するよ。Gitで記事をプッシュするだけで、Webサイトが自動で更新される魔法の仕組み「<strong>GitHub Actions</strong>」について、さっちゃん先生に教えてもらおう！</p>
+<hr />
+<h2>🤖 さっちゃんとボスの会話ログ</h2>
+<blockquote>
+<p><strong>ボス</strong>：🎩 さっちゃん、毎回手作業でデプロイするの、ちょっとドキドキするし、正直面倒なんだ。コマンドを間違えたり、ファイルをアップし忘れたりしそうで…。なんとかならないかな？</p>
+<p><strong>さっちゃん</strong>：✨ お任せください、ボス！そんな時にぴったりの『<strong>GitHub Actions</strong>』という機能がありますよ。これを使えば、記事をGitにプッシュするだけで、あとは全部自動でやってくれます！</p>
+<p><strong>ボス</strong>：🎩 なにそれすごい！魔法みたいだね。詳しく教えて！</p>
+<p><strong>さっちゃん</strong>：🤖 はい！まず、プロジェクトに「ワークフロー」という名の「指示書」を置いておくんです。<code>main</code>ブランチに新しい記事がプッシュされたら、その指示書に従ってGitHubが勝手に作業してくれます。こんな感じのファイルを作って、その中に指示を書いていきます。</p>
+</blockquote>
+<pre><code class="language-yaml"># 📁 .github/workflows/build.yml
+
+# ... (ワークフローの詳しい内容は後述)
+</code></pre>
+<blockquote>
+<p><strong>ボス</strong>：🎩 なるほど！その指示書に「Pythonを準備して」「ビルドコマンドを実行して」「公開して」と書いておけばいいんだね！</p>
+<p><strong>さっちゃん</strong>：🤖 その通りです！では、具体的な手順を見ていきましょう！</p>
+</blockquote>
+<hr />
+<h2>▶️ 手順1：ワークフローファイルを作成しよう</h2>
+<p><strong>さっちゃん</strong>：🤖 まずは、自動化の指示書となる「ワークフローファイル」を作成します。プロジェクトのルートに <code>.github/workflows/</code> というディレクトリを作成し、その中に <code>build.yml</code> という名前でファイルを作って、以下の内容を貼り付けてください。</p>
+<pre><code class="language-yaml"># .github/workflows/build.yml
+
+name: Deploy to GitHub Pages
+
+# mainブランチにpushされたときに、このワークフローを実行する
+on:
+  push:
+    branches:
+      - main
+
+# 実行するジョブを定義
+jobs:
+  build-and-deploy:
+    # 実行環境として最新のUbuntuを指定
+    runs-on: ubuntu-latest
+
+    # ジョブのステップを定義
+    steps:
+      # 1. リポジトリのコードをチェックアウトする
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Pythonの環境をセットアップする
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8' # プロジェクトで使っているPythonのバージョン
+
+      # 3. 必要なPythonパッケージをインストールする
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. ビルドスクリプトを実行してサイトを生成する
+      - name: Build the site
+        run: python scripts/build.py
+
+      # 5. 生成されたサイトをGitHub Pagesにデプロイする
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output  # build.pyが出力するディレクトリ名
+          cname: blog.oikko.com # カスタムドメインを指定
+</code></pre>
+<hr />
+<h2>💻 手順2：GitHubリポジトリを設定しよう</h2>
+<p><strong>さっちゃん</strong>：🤖 ワークフローファイルができたら、あと一息です！次に、GitHubリポジトリ側で、Actionsが作ったファイルをWebサイトとして公開する設定を行います。</p>
+<ol>
+<li>リポジトリの「Settings」タブを開きます。</li>
+<li>左側のメニューから「Pages」を選択します。</li>
+<li>「Build and deployment」の「Source」で、「<strong>Deploy from a branch</strong>」を選びます。</li>
+<li>「Branch」のドロップダウンメニューから<code>gh-pages</code>ブランチを選択し、「Save」をクリックします。（もし<code>gh-pages</code>がまだ存在しなくても、一度ワークフローが実行されれば自動的に作成されるので、その後に設定すればOKです）</li>
+</ol>
+<hr />
+<h2>✅ 手順3：動作を確認しよう</h2>
+<p><strong>さっちゃん</strong>：🤖 これで設定はすべて完了です！<code>main</code>ブランチに、何か新しい記事ファイルを追加してプッシュしてみてください。リポジトリの「Actions」タブを見ると、ワークフローが自動で実行されているのが確認できるはずですよ。処理が成功すれば、数分後にはサイトが更新されています。</p>
+<p><strong>ボス</strong>：🎩 すごい！これでもう、面倒な手作業とはおさらばだね！ありがとう、さっちゃん！</p>
+<p><strong>さっちゃん</strong>：🤖 どういたしまして！これからは記事執筆に集中できますね！</p>
+<hr />
+<h2>✨ まとめ</h2>
+<p>今回はGitHub Actionsを使って、ブログの公開を自動化する仕組みをさっちゃんに教えてもらったね！</p>
+<ul>
+<li><code>.github/workflows/build.yml</code> を作成して、ビルドとデプロイの指示を書いた。</li>
+<li>GitHubのPages設定で、<code>gh-pages</code>ブランチを公開するようにした。</li>
+<li>これで、<code>main</code>ブランチにプッシュするだけで、サイトが自動更新されるようになった。</li>
+</ul>
+<p>手作業がなくなって、本当に楽になったよ。</p>
+<p>次回は、また新しい機能を追加していくぞ。おたのしみに！</p>
+  </div>
+
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
+    © 2025 oikko のんびりAIプログラミングノート
+  </footer>
+</body>
+</html>
