@@ -59,7 +59,8 @@ for md_file in POSTS_DIR.glob("*.md"):
 
     articles.append({
         "title": metadata.get("title", md_file.stem),
-        "url": f"articles/{md_file.stem}.html"
+        "url": f"articles/{md_file.stem}.html",
+        "date": metadata.get("date", "1970-01-01") # ソート用に日付も追加
     })
 
     print(f"📝 記事生成: {output_path.relative_to(ROOT)}")
@@ -67,6 +68,10 @@ for md_file in POSTS_DIR.glob("*.md"):
 # ──────────────────────────────
 # 2. indexページ（記事一覧）
 # ──────────────────────────────
+
+# 記事を日付の降順（新しいものが上）に並び替え
+articles.sort(key=lambda item: item.get("date"), reverse=True)
+
 index_template = env.get_template("index.page.html")
 index_html = index_template.render(
     articles=articles,
