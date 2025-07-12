@@ -1,5 +1,6 @@
 # scripts/build.py
 import markdown
+import frontmatter
 import shutil
 import os
 from pathlib import Path
@@ -40,12 +41,16 @@ for md_file in POSTS_DIR.glob("*.md"):
     if md_file.stem == "about":
         continue  # about.md は専用テンプレートで処理するのでスキップ
 
-    md_text = md_file.read_text(encoding="utf-8")
-    html_body = markdown.markdown(md_text, extensions=["fenced_code", "tables"])
-    title = md_file.stem.replace("-", " ").capitalize()
+    # メタデータとコンテンツを読み込む
+    post = frontmatter.load(md_file)
+    metadata = post.metadata
+    content = post.content
+
+    html_body = markdown.markdown(content, extensions=["fenced_code", "tables"])
 
     rendered = article_template.render(
-        title=title,
+        title=metadata.get("title", md_file.stem),
+        date=metadata.get("date"),
         content=html_body,
         site_name=site_name
     )
@@ -53,7 +58,7 @@ for md_file in POSTS_DIR.glob("*.md"):
     output_path.write_text(rendered, encoding="utf-8")
 
     articles.append({
-        "title": title,
+        "title": metadata.get("title", md_file.stem),
         "url": f"articles/{md_file.stem}.html"
     })
 

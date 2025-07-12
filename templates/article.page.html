@@ -7,7 +7,7 @@
 
   <!-- 記事タイトル -->
   <h1 class="text-2xl font-bold text-[#0f2e3e] mb-2">
-    {{ title }}
+    {{ title | default('No Title') }}
   </h1>
 
   <!-- 投稿日・カテゴリ（任意） -->
