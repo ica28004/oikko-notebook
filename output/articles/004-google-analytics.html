@@ -66,7 +66,7 @@
 <p><strong>ボス</strong>：🎩 さっちゃん、サイトを作ったはいいけど、どれくらいの人が見てくれてるのか、さっぱり分からないんだ。アクセス解析ってできないのかな？</p>
 <p><strong>さっちゃん</strong>：✨ もちろんです、ボス！そんな時のために『<strong>Google Analytics</strong>』というGoogleが提供している無料のツールがあります。これを使えば、訪問者数や人気のページ、ユーザーがどこから来たのかなどを詳しく分析できますよ！</p>
 <p><strong>ボス</strong>：🎩 おお、それはすごい！ぜひ導入したい！どうやって設定すればいいんだい？</p>
-<p><strong>さちゃん</strong>：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の<strong>『測定ID』</strong>というものを取得します。次に、そのIDを埋め込んだ<strong>トラッキングコード</strong>をブログの全ページに設置すれば完了です！</p>
+<p><strong>さっちゃん</strong>：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の<strong>『測定ID』</strong>というものを取得します。次に、そのIDを埋め込んだ<strong>トラッキングコード</strong>をブログの全ページに設置すれば完了です！</p>
 <p><strong>ボス</strong>：🎩 なるほど、なんだかできそうな気がしてきた！早速やってみよう！</p>
 </blockquote>
 <hr />
@@ -88,7 +88,7 @@
 <pre><code class="language-html">&lt;!-- templates/_ga.html --&gt;
 
 &lt;!-- Google tag (gtag.js) --&gt;
-&lt;script async src=&quot;[https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX](https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX)&quot;&gt;&lt;/script&gt;
+&lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -126,7 +126,6 @@
 <p><strong>さちゃん</strong>：🤖 はい！<code>scripts/build.py</code>を少し修正して、<code>about.html</code>も他のページと同じ仕組みで生成するように変更すれば解決します。具体的には、静的ファイルをコピーする処理をやめて、Jinja2でレンダリングするようにします。</p>
 <p><strong>ボス</strong>：🎩 なるほど、全てのページで共通の仕組みを使うように統一するんだね。勉強になるな。ありがとう！</p>
 </blockquote>
-<hr />
 <h2>✨ まとめ</h2>
 <p>今回はGoogle Analyticsを導入して、アクセス解析の第一歩を踏み出したね！</p>
 <ul>

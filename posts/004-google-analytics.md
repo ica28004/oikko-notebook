@@ -21,7 +21,7 @@ author: "ボス"
 >
 > **ボス**：🎩 おお、それはすごい！ぜひ導入したい！どうやって設定すればいいんだい？
 >
-> **さちゃん**：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の**『測定ID』**というものを取得します。次に、そのIDを埋め込んだ**トラッキングコード**をブログの全ページに設置すれば完了です！
+> **さっちゃん**：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の**『測定ID』**というものを取得します。次に、そのIDを埋め込んだ**トラッキングコード**をブログの全ページに設置すれば完了です！
 >
 > **ボス**：🎩 なるほど、なんだかできそうな気がしてきた！早速やってみよう！
 
@@ -50,7 +50,7 @@ author: "ボス"
 <!-- templates/_ga.html -->
 
 <!-- Google tag (gtag.js) -->
-<script async src="[https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX](https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX)"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -101,7 +101,6 @@ author: "ボス"
 >
 > **ボス**：🎩 なるほど、全てのページで共通の仕組みを使うように統一するんだね。勉強になるな。ありがとう！
 
----
 
 ## ✨ まとめ
 
