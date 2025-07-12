@@ -1,60 +1,88 @@
+<!--
+  templates/article.page.html
+  個別記事ページのテンプレートです。
+-->
+
+<!-- サイト共通のレイアウトを持つベーステンプレートを継承します -->
+<!--
+  templates/_base.page.html
+  このファイルはサイト全体の共通レイアウトを定義する「ベーステンプレート」です。
+  各ページ（記事、トップ、アバウトなど）はこのファイルを継承して作成されます。
+-->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 子テンプレートが独自のタイトルを挿入するためのプレースホルダー。デフォルトではサイト名が表示されます。 -->
   <title>oikko のんびりAIプログラミングノート</title>
+  <!-- Google Fonts (Noto Sans JP) を読み込みます -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <!-- サイト共通のカスタムCSSファイルを読み込みます -->
   <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- Tailwind CSSのCDNを読み込み、タイポグラフィプラグインを有効にします -->
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-  <!-- templates/_ga.html -->
+  <!-- Google Analyticsのトラッキングコードを含む別ファイルをここに挿入します -->
+  <!--
+  templates/_ga.html
+  このファイルはGoogle Analyticsのトラッキングコードを埋め込むためのものです。
+  ベーステンプレートから読み込まれることで、サイトの全ページに適用されます。
+-->
 
 <!-- Google tag (gtag.js) -->
+<!-- Googleのタグマネージャーライブラリを非同期で読み込みます -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-92Q69GGDGD"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  // ここでGoogle Analyticsの測定IDを設定します。このIDでどのGAプロパティにデータを送信するかを識別します。
   gtag('config', 'G-92Q69GGDGD');
 </script>
 </head>
 <body class="bg-[#0f2e3e] text-[#1a1a1a]">
 
-  <!-- ヘッダー -->
+  <!-- ヘッダーセクション: サイトのタイトルとナビゲーションを表示します -->
   <header class="bg-wave text-white py-10 text-center">
     <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      <!-- ビルドスクリプトから渡されたサイト名を表示します -->
       oikko
     </h1>
     <p class="text-xl mt-2 drop-shadow-md text-white">
       のんびりAIプログラミングノート
     </p>
 
+    <!-- ナビゲーションメニュー -->
     <nav class="flex flex-wrap justify-center gap-4 mt-6">
       <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
       <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
     </nav>
   </header>
 
-  <!-- メイン -->
+  <!-- メインコンテンツセクション: 各ページ固有のコンテンツがここに表示されます -->
   <main class="washi-box px-4 py-12">
     <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+      <!-- このブロックが、記事本文などの子テンプレートのメインコンテンツに置き換えられます -->
       
 
   <!-- アイキャッチ画像（任意） -->
   <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
 
   <!-- 記事タイトル -->
+  <!-- ビルドスクリプトから渡された記事タイトルを表示します。もしタイトルが無い場合は、デフォルトの文字列が表示されます。 -->
   <h1 class="text-4xl font-bold mb-2 text-gray-800">
     ステップ４：Google Analyticsを導入してアクセス解析を始めよう
   </h1>
 
   <!-- 投稿日 -->
+  <!-- 投稿日が存在する場合のみ、日付を表示します。 -->
   
     <p class="text-base lg:text-lg text-gray-500 mb-6">📅 2025-07-04</p>
   
 
   <!-- Markdown本文挿入 -->
+  <!-- Markdownから変換されたHTML本文をここに挿入します。HTMLタグをそのまま出力する設定です。 -->
   <div class="prose lg:prose-xl max-w-none">
     <h2>🎩 今日の概要</h2>
 <p>こんにちは、<strong>ボス</strong>です！
@@ -142,7 +170,7 @@
     </div>
   </main>
 
-  <!-- フッター -->
+  <!-- フッターセクション: コピーライト情報を表示します -->
   <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
     © 2025 oikko のんびりAIプログラミングノート
   </footer>

@@ -1,4 +1,5 @@
-/* --- 共通フォント --- */
+/* --- 共通スタイル --- */
+/* サイト全体に適用される基本的なフォント、背景色、文字色などを定義します */
 body {
   font-family: 'Noto Sans JP', sans-serif;
   background-color: #0f2e3e;
@@ -7,19 +8,22 @@ body {
   margin: 0;
 }
 
-/* --- 波模様背景（ヘッダー用） --- */
+/* --- ヘッダー背景 --- */
+/* ヘッダー部分に波模様の背景画像を設定します */
 .bg-wave {
   background-image: url('/static/images/nami_bg.png');
   background-size: cover;
   background-repeat: repeat;
 }
 
-/* --- 和紙風ベージュ背景（本文エリア全体） --- */
+/* --- メインコンテンツ背景 --- */
+/* 本文エリア全体に和紙のようなテクスチャの背景色を設定します */
 .washi-box {
   background-color: #f5f3ea;
 }
 
-/* --- ナビボタン（ホバー付き） --- */
+/* --- ナビゲーションボタン --- */
+/* ヘッダー内のナビゲーションリンクの基本デザインです */
 nav a {
   background-color: rgba(255, 255, 255, 0.2);
   color: white;
@@ -30,13 +34,15 @@ nav a {
   backdrop-filter: blur(8px);
 }
 
+/* ナビゲーションボタンのホバー効果: マウスが乗った時の見た目の変化です */
 nav a:hover {
   background-color: rgba(255, 255, 255, 0.4);
   color: #fff;
   text-decoration: underline;
 }
 
-/* --- アイキャッチ画像調整 --- */
+/* --- アイキャッチ画像 --- */
+/* 記事やページのトップに表示される画像のスタイルを調整します */
 .illustration {
   background-color: #f5f3ea;
   padding: 1rem;
@@ -49,7 +55,8 @@ nav a:hover {
   height: auto;
 }
 
-/* --- フッター調整 --- */
+/* --- フッター --- */
+/* ページ最下部のフッターのスタイルを調整します */
 footer {
   font-size: 0.85rem;
   text-align: center;
@@ -58,7 +65,8 @@ footer {
   background-color: #0f2e3e;
 }
 
-/* --- 見出しスタイル --- */
+/* --- 見出し --- */
+/* h1, h2, h3 タグの基本的なスタイルを定義します */
 h1, h2, h3 {
   font-weight: bold;
   margin-top: 1.5rem;
@@ -78,15 +86,18 @@ h3 {
 }
 
 /* --- 汎用リンク --- */
+/* 本文中の一般的なリンクのスタイルです */
 a {
   color: #264653;
   text-decoration: underline;
 }
+/* リンクのホバー効果: マウスが乗った時の色の変化です */
 a:hover {
   color: #2a9d8f;
 }
 
-/* --- 本文ボックス内のカード風セクション（option） --- */
+/* --- カード風コンポーネント --- */
+/* 本文内で情報をまとめるための、影付きのカード型コンポーネントのスタイルです */
 .card {
   background-color: white;
   border-radius: 1.5rem;
@@ -94,31 +105,30 @@ a:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* --- モバイル対応 --- */
+/* --- レスポンシブ対応 --- */
+/* 画面幅が640px以下のデバイスで適用されるスタイルです */
 @media screen and (max-width: 640px) {
   body {
-    font-size: 15px;
+    font-size: 15px; /* モバイルでは少しフォントサイズを小さくします */
   }
 
   nav a {
-    font-size: 0.85rem;
+    font-size: 0.85rem; /* ナビゲーションボタンの文字と余白を調整します */
     padding: 0.4rem 0.8rem;
   }
 
   .illustration {
-    width: 100%;
+    width: 100%; /* アイキャッチ画像は画面幅いっぱいに広げます */
     max-width: 100%;
   }
 
   footer {
-    padding-bottom: 2rem;
+    padding-bottom: 2rem; /* フッターの下部の余白を確保します */
   }
 }
 
-/*
- * コードブロックのスタイル
- * Markdownの ``` で囲んだ部分に適用されます
- */
+/* Markdownのコードブロック部分の見た目を調整します。 */
+/* 背景色、枠線、角丸、余白を設定し、横スクロール可能にすることで可読性を向上させます。 */
 pre {
   background-color: #f3f4f6; /* 背景を薄い灰色に */
   border: 1px solid #e5e7eb; /* 薄い灰色の枠線を追加 */
@@ -127,9 +137,8 @@ pre {
   overflow-x: auto;          /* 横に長いコードはスクロールできるようにする */
 }
 
-/*
- * preタグの中のcodeタグ、またはインラインの`code`に適用
- */
+/* コード用フォントの指定 */
+/* コードブロック内やインラインコードで使われるフォントを、等幅フォントに指定します。 */
 code {
   font-family: Consolas, 'Courier New', Courier, monospace; /* プログラミング向けのフォントを指定 */
 }
