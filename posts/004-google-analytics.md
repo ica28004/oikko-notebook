@@ -21,7 +21,7 @@ author: "ボス"
 >
 > **ボス**：🎩 おお、それはすごい！ぜひ導入したい！どうやって設定すればいいんだい？
 >
-> **さっちゃん**：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の**『測定ID』**というものを取得します。次に、そのIDを埋め込んだ**トラッキングコード**をブログの全ページに設置すれば完了です！
+> **さちゃん**：🤖 手順は大きく分けて２つです。まずGoogle Analyticsに登録して、私たちのサイト専用の**『測定ID』**というものを取得します。次に、そのIDを埋め込んだ**トラッキングコード**をブログの全ページに設置すれば完了です！
 >
 > **ボス**：🎩 なるほど、なんだかできそうな気がしてきた！早速やってみよう！
 
@@ -36,9 +36,7 @@ author: "ボス"
 3.  プロパティを作成します。（プロパティ名はサイト名「oikko-notebook」などが分かりやすいです）
 4.  ウェブサイトのURL（`blog.oikko.com`）などを入力して、「データストリーム」を作成します。
 
-**さっちゃん**：🤖 設定が完了すると、`G-XXXXXXXXXX` のような形式の「**測定ID**」が発行されます。このIDは後で使うので、コピーしてメモしておいてくださいね。
-
-[Google Analyticsの測定ID画面の画像]
+**さっちゃん**：🤖 設定が完了すると、`G-XXXXXXXXXX` のような形式の「**測定ID**」が発行されます。このIDは後で使うので、コピーしておいてくださいね。
 
 ---
 
@@ -48,36 +46,36 @@ author: "ボス"
 
 1.  `templates/` ディレクトリに `_ga.html` という新しいファイルを作成し、以下の内容を貼り付けてください。
 
-    ```html
-    <!-- templates/_ga.html -->
+```html
+<!-- templates/_ga.html -->
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="[https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX](https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX)"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!-- Google tag (gtag.js) -->
+<script async src="[https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX](https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX)"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    ```
+    gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
 
-    **さっちゃん**：🤖 **重要！** 上記コードの中にある `G-XXXXXXXXXX` の部分は、手順1で取得したボス自身の測定IDに**必ず**書き換えてくださいね。
+**さっちゃん**：🤖 **重要！** 上記コードの中にある `G-XXXXXXXXXX` の部分は、手順1で取得したボス自身の測定IDに**必ず**書き換えてくださいね。
 
 2.  `templates/_base.page.html` ファイルを開き、`</head>` タグの直前に、今作ったファイルを読み込むための1行を追加します。
 
-    ```html
-    <!-- templates/_base.page.html -->
+```html
+<!-- templates/_base.page.html -->
 
-    <head>
-      ...
-      <link rel="stylesheet" href="/static/css/style.css" />
-      
-      <!-- ↓ この行を追加 ↓ -->
-      {% include "_ga.html" %}
-    </head>
+<head>
     ...
-    ```
+    <link rel="stylesheet" href="/static/css/style.css" />
+    
+    <!-- ↓ この行を追加 ↓ -->
+    {% include "_ga.html" %}
+</head>
+...
+```
 
 ---
 
@@ -87,9 +85,21 @@ author: "ボス"
 
 その後、Google Analyticsの管理画面を開き、「レポート」→「リアルタイム」を確認します。自分のアクセスがカウントされていれば、無事に導入成功です！🎉
 
-**ボス**：🎩 おお、リアルタイムレポートに数字が出た！すごい、ちゃんと計測できてる！
+![Google Analyticsの測定ID画面の画像](/static/images/analytics.png)
 
-**さっちゃん**：🤖 よかったです！データが溜まるまでには少し時間がかかりますが、明日以降、どんな人がブログを訪れているか分析できるようになりますよ。
+---
+
+## 🤔 ちょっと待った！はまりポイント
+
+> **ボス**：🎩 さっちゃん、大変だ！リアルタイムレポートは確認できたんだけど、アナリティクスの管理画面で「タグ設定なし」って警告が出てるページがあるぞ？`about.html`みたいだ。
+>
+> **さっちゃん**：🤖 本当ですか、ボス！…なるほど、原因が分かりました。これは、`about.html`だけが他のページと違う方法で作られているため、トラッキングコードを埋め込んだ共通のテンプレートが読み込まれていなかったんです。
+>
+> **ボス**：🎩 そうだったのか！どうすれば解決できるんだい？
+>
+> **さちゃん**：🤖 はい！`scripts/build.py`を少し修正して、`about.html`も他のページと同じ仕組みで生成するように変更すれば解決します。具体的には、静的ファイルをコピーする処理をやめて、Jinja2でレンダリングするようにします。
+>
+> **ボス**：🎩 なるほど、全てのページで共通の仕組みを使うように統一するんだね。勉強になるな。ありがとう！
 
 ---
 
@@ -99,6 +109,7 @@ author: "ボス"
 
 * Google Analyticsに登録して「測定ID」を取得した。
 * トラッキングコードを共通テンプレートに埋め込んで、全ページで計測できるようにした。
+* 途中で`about.html`が計測されない問題があったけど、ビルドスクリプトを修正して解決できた。
 * リアルタイムレポートで、動作確認ができた。
 
 サイト運営の新しい楽しみが増えたね！
