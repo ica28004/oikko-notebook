@@ -6,7 +6,7 @@
   <title>{% block title %}{{ site_name }}{% endblock %}</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
   <link href="/static/css/style.css" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 </head>
 <body class="bg-[#0f2e3e] text-[#1a1a1a]">
 
@@ -27,7 +27,7 @@
 
   <!-- メイン -->
   <main class="washi-box px-4 py-12">
-    <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
       {% block content %}{% endblock %}
     </div>
   </main>
