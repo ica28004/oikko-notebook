@@ -38,8 +38,6 @@ author: "ボス"
 
 **さっちゃん**：🤖 設定が完了すると、`G-XXXXXXXXXX` のような形式の「**測定ID**」が発行されます。このIDは後で使うので、コピーしておいてくださいね。
 
-![Google Analyticsの測定ID画面の画像](/static/images/analytics.png)
-
 ---
 
 ## 💻 手順2：トラッキングコードをブログに追加しよう
@@ -48,36 +46,36 @@ author: "ボス"
 
 1.  `templates/` ディレクトリに `_ga.html` という新しいファイルを作成し、以下の内容を貼り付けてください。
 
-    ```html
-    <!-- templates/_ga.html -->
+```html
+<!-- templates/_ga.html -->
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="[https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX](https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX)"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<!-- Google tag (gtag.js) -->
+<script async src="[https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX](https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX)"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-      gtag('config', 'G-XXXXXXXXXX');
-    </script>
-    ```
+    gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
 
-    **さっちゃん**：🤖 **重要！** 上記コードの中にある `G-XXXXXXXXXX` の部分は、手順1で取得したボス自身の測定IDに**必ず**書き換えてくださいね。
+**さっちゃん**：🤖 **重要！** 上記コードの中にある `G-XXXXXXXXXX` の部分は、手順1で取得したボス自身の測定IDに**必ず**書き換えてくださいね。
 
 2.  `templates/_base.page.html` ファイルを開き、`</head>` タグの直前に、今作ったファイルを読み込むための1行を追加します。
 
-    ```html
-    <!-- templates/_base.page.html -->
+```html
+<!-- templates/_base.page.html -->
 
-    <head>
-      ...
-      <link rel="stylesheet" href="/static/css/style.css" />
-      
-      <!-- ↓ この行を追加 ↓ -->
-      {% include "_ga.html" %}
-    </head>
+<head>
     ...
-    ```
+    <link rel="stylesheet" href="/static/css/style.css" />
+    
+    <!-- ↓ この行を追加 ↓ -->
+    {% include "_ga.html" %}
+</head>
+...
+```
 
 ---
 
@@ -86,6 +84,8 @@ author: "ボス"
 **さっちゃん**：🤖 これで設定は完了です！サイトを再ビルドしてデプロイした後、自分のブログにアクセスしてみてください。
 
 その後、Google Analyticsの管理画面を開き、「レポート」→「リアルタイム」を確認します。自分のアクセスがカウントされていれば、無事に導入成功です！🎉
+
+![Google Analyticsの測定ID画面の画像](/static/images/analytics.png)
 
 ---
 
