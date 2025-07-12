@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>oikko のんびりAIプログラミングノート</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#0f2e3e] text-[#1a1a1a]">
+
+  <!-- ヘッダー -->
+  <header class="bg-wave text-white py-10 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      oikko
+    </h1>
+    <p class="text-xl mt-2 drop-shadow-md text-white">
+      のんびりAIプログラミングノート
+    </p>
+
+    <nav class="flex flex-wrap justify-center gap-4 mt-6">
+      <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
+      <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
+    </nav>
+  </header>
+
+  <!-- メイン -->
+  <main class="washi-box px-4 py-12">
+    <div class="max-w-2xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+      
+
+  <!-- アイキャッチ画像（任意） -->
+  <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 記事タイトル -->
+  <h1 class="text-2xl font-bold text-[#0f2e3e] mb-2">
+    ステップ２：Markdownにメタデータを追加して、記事タイトルをリッチにしよう
+  </h1>
+
+  <!-- 投稿日・カテゴリ（任意） -->
+  
+    <p class="text-xs text-gray-500 mb-6">📅 2025-07-12</p>
+  
+
+  <!-- Markdown本文挿入 -->
+  <div class="text-sm leading-loose text-[#333] prose prose-sm max-w-none">
+    <h1>ステッ２：Markdownにメタデータを追加して、記事タイトルをリッチにしよう</h1>
+<p>こんにちは、<strong>ボス</strong>です！
+前回はサイトの骨組みを作りましたが、記事のタイトルが <code>001-first-step</code> のようにファイル名から自動生成されていて、少し味気ないですよね。
+今回は、Markdownファイルに「メタデータ」を追加して、もっとリッチなタイトルや投稿日を表示できるようにビルドスクリプトを改良します。</p>
+<hr />
+<h2>🤖 さっちゃんとボスの会話ログ</h2>
+<blockquote>
+<p>✨ <strong>さっちゃん</strong>：ボス、今のままだと記事タイトルがファイル名そのままですよね？ <code>001-first-step</code> みたいな。日本語のちゃんとしたタイトルを付けたいです！</p>
+<p><strong>ボス</strong>：いいところに気づいたね、さっちゃん。そのために「メタデータ」という仕組みを導入しよう。Markdownファイルの先頭に、タイトルや日付といった情報を書けるようにするんだ。</p>
+<p><strong>さっちゃん</strong>：なるほど！具体的にはどうやって書くんですか？</p>
+<p><strong>ボス</strong>：<code>---</code>で囲んだエリアに <code>キー: 値</code> の形式で書くんだ。これを「YAML Front Matter」と呼ぶ。こんな感じさ。</p>
+<h2>```yaml</h2>
+<p>title: "これが本当の記事タイトルです"
+date: "2025-07-15"</p>
+<hr />
+<p>ここから下が記事の本文...
+```</p>
+<p><strong>さっちゃん</strong>：分かりやすい！これをビルドスクリプトで読み込んで、HTMLに埋め込むんですね！</p>
+</blockquote>
+<hr />
+<h2>▶️ 手順1：ライブラリを追加しよう</h2>
+<p>メタデータを簡単に扱うために、Pythonのライブラリを追加します。
+<code>requirements.txt</code> というファイルを作って、必要なライブラリを書いておくと管理が楽になります。</p>
+<p>プロジェクトのルートに <code>requirements.txt</code> を作成し、以下を記述してください。</p>
+<pre><code class="language-txt">markdown
+jinja2
+python-frontmatter
+</code></pre>
+<p>そして、以下のコマンドでインストールします。</p>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<hr />
+<h2>💻 手順2：ビルドスクリプトを改良しよう</h2>
+<p><code>scripts/build.py</code> を書き換えて、メタデータを読み込めるようにします。</p>
+<ul>
+<li><code>python-frontmatter</code> を使ってMarkdownファイルを読み込む</li>
+<li>メタデータの <code>title</code> や <code>date</code> を取得する</li>
+<li>取得した情報をテンプレートに渡す</li>
+</ul>
+<hr />
+<h2>✅ 手順3：テンプレートを修正しよう</h2>
+<p><code>templates/article.page.html</code> と <code>templates/index.page.html</code> を修正して、メタデータから受け取った情報を表示できるようにします。</p>
+<p>これで、ファイル名に依存しない、自由な記事タイトルが付けられるようになります！
+次回は、さらにリッチな表現を目指していきましょう。</p>
+<p>おたのしみに！</p>
+  </div>
+
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
+    © 2025 oikko のんびりAIプログラミングノート
+  </footer>
+</body>
+</html>

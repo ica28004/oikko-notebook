@@ -35,15 +35,17 @@
 
   <!-- 記事タイトル -->
   <h1 class="text-2xl font-bold text-[#0f2e3e] mb-2">
-    001 first step
+    ステップ１：プロジェクトの骨組みを作る
   </h1>
 
   <!-- 投稿日・カテゴリ（任意） -->
   
+    <p class="text-xs text-gray-500 mb-6">📅 2025-07-01</p>
+  
 
   <!-- Markdown本文挿入 -->
   <div class="text-sm leading-loose text-[#333] prose prose-sm max-w-none">
-    <h1>第一歩：プロジェクトの骨組みを作る</h1>
+    <h1>ステップ１：プロジェクトの骨組みを作る</h1>
 <p>初めまして、<strong>ボス</strong>です！
 このシリーズ第1話では、Markdown → HTMLに変換するビルドスクリプトと、Jinja2＋TailwindCSSを使ったテンプレートで、最低限動く状態のサイトを構築します。</p>
 <hr />
@@ -73,13 +75,13 @@
 <li><strong>style.css</strong>：Tailwindに加えるカスタムスタイル</li>
 </ul>
 <hr />
-<h2>🤖 よっちゃんとボスの会話ログ</h2>
+<h2>🤖 さっちゃんとボスの会話ログ</h2>
 <blockquote>
-<p>✨ <strong>よっちゃん</strong>：いまの <code>build.py</code> はどんな流れで記事を出力するんでしたっけ？</p>
+<p>✨ <strong>さっちゃん</strong>：いまの <code>build.py</code> はどんな流れで記事を出力するんでしたっけ？</p>
 <p><strong>ボス</strong>：<code>posts/*.md</code> を読み込んで HTML に変換、それを <code>articles/</code> に出力。<code>index.html</code> と <code>about.html</code> もテンプレートから出力されるよ。</p>
-<p><strong>よっちゃん</strong>：出力されるタイトルはファイル名ベースにしてましたよね？</p>
+<p><strong>さっちゃん</strong>：出力されるタイトルはファイル名ベースにしてましたよね？</p>
 <p><strong>ボス</strong>：うん、<code>001-first-step.md</code> なら <code>001-first-step.html</code> になるし、表示タイトルも "001-first-step" にしてる。</p>
-<p><strong>よっちゃん</strong>：じゃあ今回の仕様反映後も、記事タイトルが画面上部に出てるか確認しておきましょう。</p>
+<p><strong>さっちゃん</strong>：じゃあ今回の仕様反映後も、記事タイトルが画面上部に出てるか確認しておきましょう。</p>
 </blockquote>
 <hr />
 <h2>▶️ 手順1：ビルドを実行しよう</h2>
