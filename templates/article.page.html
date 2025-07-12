@@ -6,13 +6,13 @@
   <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
 
   <!-- 記事タイトル -->
-  <h1 class="text-4xl font-bold mb-4 text-gray-800">
+  <h1 class="text-4xl font-bold mb-2 text-gray-800">
     {{ title | default('No Title') }}
   </h1>
 
-  <!-- 投稿日・カテゴリ（任意） -->
+  <!-- 投稿日 -->
   {% if date %}
-    <p class="text-xs text-gray-500 mb-6">📅 {{ date }}</p>
+    <p class="text-base lg:text-lg text-gray-500 mb-6">📅 {{ date }}</p>
   {% endif %}
 
   <!-- Markdown本文挿入 -->
