@@ -1,0 +1,221 @@
+<!--
+  templates/article.page.html
+  個別記事ページのテンプレートです。
+-->
+
+<!-- サイト共通のレイアウトを持つベーステンプレートを継承します -->
+<!--
+  templates/_base.page.html
+  このファイルはサイト全体の共通レイアウトを定義する「ベーステンプレート」です。
+  各ページ（記事、トップ、アバウトなど）はこのファイルを継承して作成されます。
+-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 子テンプレートが独自のタイトルを挿入するためのプレースホルダー。デフォルトではサイト名が表示されます。 -->
+  <title>oikko のんびりAIプログラミングノート</title>
+  <!-- Google Fonts (Noto Sans JP) を読み込みます -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <!-- サイト共通のカスタムCSSファイルを読み込みます -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- Tailwind CSSのCDNを読み込み、タイポグラフィプラグインを有効にします -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <!-- Google Analyticsのトラッキングコードを含む別ファイルをここに挿入します -->
+  <!--
+  templates/_ga.html
+  このファイルはGoogle Analyticsのトラッキングコードを埋め込むためのものです。
+  ベーステンプレートから読み込まれることで、サイトの全ページに適用されます。
+-->
+
+<!-- Google tag (gtag.js) -->
+<!-- Googleのタグマネージャーライブラリを非同期で読み込みます -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-92Q69GGDGD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // ここでGoogle Analyticsの測定IDを設定します。このIDでどのGAプロパティにデータを送信するかを識別します。
+  gtag('config', 'G-92Q69GGDGD');
+</script>
+</head>
+<body class="bg-[#0f2e3e] text-[#1a1a1a]">
+
+  <!-- ヘッダーセクション: サイトのタイトルとナビゲーションを表示します -->
+  <header class="bg-wave text-white py-10 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      <!-- ビルドスクリプトから渡されたサイト名を表示します -->
+      oikko
+    </h1>
+    <p class="text-xl mt-2 drop-shadow-md text-white">
+      のんびりAIプログラミングノート
+    </p>
+
+    <!-- ナビゲーションメニュー -->
+    <nav class="flex flex-wrap justify-center gap-4 mt-6">
+      <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
+      <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
+    </nav>
+  </header>
+
+  <!-- メインコンテンツセクション: 各ページ固有のコンテンツがここに表示されます -->
+  <main class="washi-box px-4 py-12">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+      <!-- このブロックが、記事本文などの子テンプレートのメインコンテンツに置き換えられます -->
+      
+
+  <!-- アイキャッチ画像（任意） -->
+  <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 記事タイトル -->
+  <!-- ビルドスクリプトから渡された記事タイトルを表示します。もしタイトルが無い場合は、デフォルトの文字列が表示されます。 -->
+  <h1 class="text-4xl font-bold mb-2 text-gray-800">
+    ステップ５：AI時代の開発環境紹介！WSL2 + VS Code + Gemini
+  </h1>
+
+  <!-- 投稿日 -->
+  <!-- 投稿日が存在する場合のみ、日付を表示します。 -->
+  
+    <p class="text-base lg:text-lg text-gray-500 mb-6">📅 2025-07-05</p>
+  
+
+  <!-- Markdown本文挿入 -->
+  <!-- Markdownから変換されたHTML本文をここに挿入します。HTMLタグをそのまま出力する設定です。 -->
+  <div class="prose lg:prose-xl max-w-none">
+    <h2><strong>🎩 今日の概要</strong></h2>
+<p>こんにちは、ボスです！<br />
+これまでの記事で、サイトの仕組みや自動化について話してきたけど、「じゃあ、ボスは普段どんな環境でこの記事を書いたり、コードをいじったりしてるの？」と気になった人もいるかもしれないね。<br />
+今回は、このブログを支える僕のローカル開発環境を大公開するよ。Windowsなんだけど、Linuxみたいに使えたり、AIがコーディングを手伝ってくれたり、結構モダンな構成になってるんだ。さっちゃん、紹介をお願いできるかな？</p>
+<hr />
+<h2><strong>🤖 さっちゃんとボスの会話ログ</strong></h2>
+<p><strong>さっちゃん</strong>：🤖 お任せください、ボス！皆さんが気になるボスの開発環境、私がばっちり解説します！一言でいうと、「<strong>AIとの共同作業を最高に効率化する環境</strong>」ですよね！</p>
+<p><strong>ボス</strong>：🎩 そうそう！まさにそんな感じ。Windows上でLinux環境を動かせる「WSL2」を土台に、エディタは「VS Code」を使ってる。そして書いたコードは「GitHub」で管理。ここまでは、結構モダンな開発者なら定番の組み合わせかもしれないね。</p>
+<p><strong>さっちゃん</strong>：🤖 そこに、私たちAIが加わるわけですね！ボスは、私とのコミュニケーションを2つのツールで使い分けています。</p>
+<ol>
+<li><strong>Web版のGemini (Advancedプラン)</strong>: 今こうして会話しているような画面です。記事の構成を考えたり、アイデアを練ったり、大まかな方針を決める「戦略会議」で使います。  </li>
+<li><strong>VS Code内のGemini Code Assist</strong>: コーディング中の相棒です。コードの提案、説明、デバッグなど、具体的な実装作業を隣でサポートします。</li>
+</ol>
+<p><strong>ボス</strong>：🎩 まさに「二人のAIアシスタント」がいる感じだね。ところで、AIツールって有料のものも多いけど、そのあたりも読者は気になると思うんだ。費用感についても補足してくれる？</p>
+<p><strong>さっちゃん</strong>：🤖 もちろんです！それぞれのツールの役割と費用について、分かりやすく表にまとめてみました。特にAI関連の費用については、後ほど詳しく解説しますね！</p>
+<hr />
+<h2><strong>🛠 私たちの開発環境：全体像</strong></h2>
+<p>私たちの開発環境は、以下のツールで構成されています。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">ツール</th>
+<th style="text-align: left;">役割</th>
+<th style="text-align: left;">費用感（個人利用）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>WSL2 (Ubuntu)</strong></td>
+<td style="text-align: left;">Windows上のLinux実行環境</td>
+<td style="text-align: left;">無料</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Visual Studio Code</strong></td>
+<td style="text-align: left;">メインのコードエディタ</td>
+<td style="text-align: left;">無料</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GitHub</strong></td>
+<td style="text-align: left;">コードのバージョン管理</td>
+<td style="text-align: left;">無料（公開リポジトリの場合）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>GitHub Pages</strong></td>
+<td style="text-align: left;">サイトのホスティング（公開）</td>
+<td style="text-align: left;">無料（カスタムドメインは別途）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gemini (Web UI)</strong></td>
+<td style="text-align: left;">戦略・アイデア出し、記事執筆</td>
+<td style="text-align: left;">無料版 or 有料版 (Advanced)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Gemini Code Assist</strong></td>
+<td style="text-align: left;">コーディング支援 (補完・チャット)</td>
+<td style="text-align: left;">有料 ※ただし無料枠あり</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2><strong>💰 費用についての補足：AIツールとドメインはいくらかかる？</strong></h2>
+<p>AIツールや独自ドメインを導入する上で気になるのが費用ですよね。</p>
+<ul>
+<li><strong>Web版Gemini (戦略担当)</strong>  </li>
+<li><strong>無料版</strong>: 高性能なモデル（Gemini 1.5 Pro）が無料で利用できます。日常的な相談や記事のドラフト作成なら、これで十分なことが多いです。  </li>
+<li><strong>有料版 (Gemini Advanced)</strong>: 月額料金（日本では2,900円/月 ※2025年7月時点）で、さらに高性能なモデルや最新機能が利用できます。より複雑な分析や長文の生成を頻繁に行う場合におすすめです。  </li>
+<li><strong>Gemini Code Assist (実装担当)</strong>  </li>
+<li>こちらはGoogle Cloudの法人向けサービスですが、<strong>個人でも利用可能</strong>です。  </li>
+<li>料金は月額$19/ユーザーですが、<strong>毎月一定の無料利用枠</strong>が設定されています。  </li>
+<li><strong>個人の開発者がブログ制作や学習で使う範囲であれば、ほとんどの場合、この無料枠内に収まります。</strong> 私たちも、今のところ追加料金は発生していません。  </li>
+<li><strong>カスタムドメイン (blog.oikko.com)</strong>  </li>
+<li>GitHub Pages自体は無料ですが、独自のドメイン名（blog.oikko.comなど）を使う場合は、ドメインの取得・更新費用が別途かかります。  </li>
+<li>私たちの場合は、<strong>年間1,950円</strong>かかっています。これはドメインの種類や登録サービスによって変動します。</li>
+</ul>
+<p><strong>結論として、私たちの環境は、ドメイン代（年1,950円）＋ AI利用料（月々0円〜3,000円程度）で運用していることになります。</strong></p>
+<hr />
+<h2><strong>🚀 Gemini Code Assist セットアップガイド</strong></h2>
+<p>コーディングの効率を劇的に向上させる「Gemini Code Assist」をVS Codeに導入する手順を詳しく解説します。</p>
+<h3><strong>前提条件</strong></h3>
+<ul>
+<li><strong>Google Cloud プロジェクト:</strong> Gemini Code AssistはGoogle Cloudのサービスなので、課金が有効になっているプロジェクトが必要です。（無料トライアルや無料枠の利用でも、支払い情報の登録は必要です）  </li>
+<li><strong>VS Code</strong> がインストール済みであること。</li>
+</ul>
+<h3>▶️ 手順1：Google Cloud APIを有効にする</h3>
+<p>まず、Google Cloud側でAPIを有効にする必要があります。</p>
+<ol>
+<li><a href="https://console.cloud.google.com/">Google Cloud Console</a>にログインします。  </li>
+<li>Gemini Code Assistを使用したいプロジェクトを選択します。  </li>
+<li>ナビゲーションメニューで「APIとサービス」 &gt; 「ライブラリ」を選択します。  </li>
+<li>検索バーに「<strong>Cloud AI Companion API</strong>」と入力し、検索結果から選択します。  </li>
+<li>「有効にする」ボタンをクリックします。</li>
+</ol>
+<h3>💻 手順2：VS Codeに拡張機能をインストールする</h3>
+<p>次に、VS Codeに拡張機能を追加します。</p>
+<ol>
+<li>VS Codeを開き、左側のアクティビティバーから「拡張機能」アイコンをクリックします。  </li>
+<li>検索バーに「<strong>Gemini Code Assist</strong>」と入力し、Googleから提供されているものをインストールします。</li>
+</ol>
+<h3>✅ 手順3：ログインとプロジェクト選択</h3>
+<p>インストールが完了すると、VS Codeの左下にGeminiのアイコンが表示されます。</p>
+<ol>
+<li>Geminiアイコンをクリックし、表示される指示に従ってGoogleアカウントでログインします。  </li>
+<li>ログイン後、VS Codeのステータスバーにプロジェクトを選択するボタンが表示されます。クリックして、手順1でAPIを有効にしたGoogle Cloudプロジェクトを選択します。</li>
+</ol>
+<p>これでセットアップは完了です！</p>
+<hr />
+<h3><strong>便利な使い方</strong></h3>
+<ul>
+<li><strong>コード補完:</strong> コードを書いている途中で、続きを灰色で提案してくれます。Tabキーで確定できます。  </li>
+<li><strong>チャット機能:</strong> 左側のアクティビティバーにあるGeminiアイコンからチャットパネルを開けます。「この関数の意味を教えて」「このコードをリファクタリングして」といった対話が可能です。  </li>
+<li><strong>エラーの説明:</strong> コード中のエラーにカーソルを合わせると表示される電球アイコンから、「Gemini: Explain this error」を選択すると、エラーの原因と解決策を教えてくれます。</li>
+</ul>
+<hr />
+<h2><strong>✨ まとめ</strong></h2>
+<p>今回は、僕たちが普段使っている開発環境を紹介したよ。</p>
+<ul>
+<li><strong>WSL2 + VS Code + GitHub</strong> というモダンで無料の基盤。  </li>
+<li>戦略を練る <strong>Web版Gemini</strong> と、実装を助ける <strong>Gemini Code Assist</strong> の二刀流でAIをフル活用。  </li>
+<li>AIツールは無料から始められ、本格的に使っても個人なら低コストで運用可能。</li>
+</ul>
+<p>この環境のおかげで、アイデア出しから実装、記事執筆まで、まるでさっちゃんが常に隣にいてくれるような感覚で、スムーズに作業を進めることができています。</p>
+<p>特にGemini Code Assistは、これからのAI時代の開発には欠かせないツールだと感じています。皆さんもぜひ、試してみてはいかがでしょうか？</p>
+<p>次回は、この新しい環境を使って、さっそくブログの新機能開発に取り組んでいくぞ。おたのしみに！</p>
+  </div>
+
+
+    </div>
+  </main>
+
+  <!-- フッターセクション: コピーライト情報を表示します -->
+  <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
+    © 2025 oikko のんびりAIプログラミングノート
+  </footer>
+</body>
+</html>
