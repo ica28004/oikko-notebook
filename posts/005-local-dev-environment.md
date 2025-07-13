@@ -2,6 +2,7 @@
 title: "ステップ５：AI時代の開発環境紹介！WSL2 + VS Code + Gemini"
 date: "2025-07-05"
 author: "ボス"
+description: "AI時代の開発環境を解説。WindowsのWSL2とVS Codeを土台に、コーディング支援AI「Gemini」を連携させる方法を紹介。ツールの役割、費用、具体的なセットアップ手順まで、AIとの共同作業を効率化するノウハウを凝縮。"
 ---
 ## **🎩 今日の概要**
 

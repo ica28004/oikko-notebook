@@ -18,6 +18,8 @@
   <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
   <!-- Google Analyticsのトラッキングコードを含む別ファイルをここに挿入します -->
   {% include "_ga.html" %}
+  <!-- SEO用メタ -->
+  <meta name="description" content="{{ description | default('oikko のんびりAIプログラミングノートは、AIと人間の共同作業でブログを開発・運営する実験的ノートです。', true) }}">
 </head>
 <body class="bg-[#0f2e3e] text-[#1a1a1a]">
 

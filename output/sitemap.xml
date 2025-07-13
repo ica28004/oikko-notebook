@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://blog.oikko.com/articles/001-first-step.html</loc>
+    <lastmod>2025-07-01</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.oikko.com/articles/003-git-automation.html</loc>
+    <lastmod>2025-07-03</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.oikko.com/articles/004-google-analytics.html</loc>
+    <lastmod>2025-07-04</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.oikko.com/articles/002-metadata-support.html</loc>
+    <lastmod>2025-07-02</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.oikko.com/articles/005-local-dev-environment.html</loc>
+    <lastmod>2025-07-05</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.oikko.com/index.html</loc>
+    <lastmod>2025-07-13</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.oikko.com/about.html</loc>
+    <lastmod>2025-07-13</lastmod>
+  </url>
+  
+</urlset>
