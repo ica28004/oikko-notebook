@@ -42,7 +42,7 @@ AIは単なるツールなのか？それとも、創造的なパートナーに
 * **開発環境**: WSL2 (Fedora), Visual Studio Code  
 * **AIアシスタント**: Gemini, Gemini Code Assist
 
-より詳しい開発環境については、[こちらの記事](https://www.google.com/search?q=/articles/005-local-dev-environment.html)で紹介しています。
+より詳しい開発環境については、[こちらの記事](articles/005-local-dev-environment.html)で紹介しています。
 
 ---
 
