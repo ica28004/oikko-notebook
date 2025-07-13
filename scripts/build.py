@@ -18,6 +18,7 @@ import shutil  # ファイル・ディレクトリ操作（コピー、削除な
 import os  # OS依存の機能を利用
 from pathlib import Path  # ファイルパスをオブジェクトとして扱う
 from jinja2 import Environment, FileSystemLoader  # HTMLテンプレートエンジン
+from datetime import datetime # 現在時刻の取得
 
 # --- パス定義 ---
 # スクリプトの場所を基準に、プロジェクトの各ディレクトリへのパスを定義します。
@@ -30,6 +31,7 @@ TEMPLATES_DIR = ROOT / "templates"  # Jinja2テンプレートが置かれてい
 # --- サイト共通情報 ---
 # テンプレート内で共通して使用する変数を定義します。
 site_name = "oikko のんびりAIプログラミングノート"
+base_url = "https://blog.oikko.com" # サイトマップ用のベースURL
 
 # --- Jinja2テンプレート環境の準備 ---
 # TEMPLATES_DIRを読み込み元として、Jinja2の環境を初期化します。
@@ -54,6 +56,7 @@ articles_output_dir = OUTPUT_DIR / "articles"  # 記事HTMLの出力先ディレ
 articles_output_dir.mkdir(parents=True)  # 出力先ディレクトリを作成
 
 articles = []  # トップページの一覧表示用に、各記事の情報を格納するリスト
+sitemap_pages = [] # サイトマップ生成用に、各ページの情報を格納するリスト
 
 # postsディレクトリ内のすべてのMarkdownファイルをループ処理
 for md_file in POSTS_DIR.glob("*.md"):
@@ -80,7 +83,8 @@ for md_file in POSTS_DIR.glob("*.md"):
         title=metadata.get("title", md_file.stem),
         date=metadata.get("date"),
         content=html_body,
-        site_name=site_name
+        site_name=site_name,
+        description=metadata.get("description") # メタディスクリプションをテンプレートに渡す
     )
     # 変換後のHTMLをファイルに書き出す
     output_path = articles_output_dir / f"{md_file.stem}.html"
@@ -91,6 +95,12 @@ for md_file in POSTS_DIR.glob("*.md"):
         "title": metadata.get("title", md_file.stem),
         "url": f"articles/{md_file.stem}.html",
         "date": metadata.get("date", "1970-01-01") # ソート用に日付も追加
+    })
+
+    # サイトマップ用に記事ページの情報を追加
+    sitemap_pages.append({
+        "url": f"{base_url}/articles/{md_file.stem}.html",
+        "lastmod": metadata.get("date", datetime.now().strftime('%Y-%m-%d'))
     })
 
     print(f"📝 記事生成: {output_path.relative_to(ROOT)}")
@@ -106,11 +116,18 @@ index_template = env.get_template("index.page.html")  # トップページ用の
 # テンプレートに記事リストとサイト名を渡して、最終的なHTMLを生成する
 index_html = index_template.render(
     articles=articles,
-    site_name=site_name
+    site_name=site_name,
+    # descriptionは渡さない（ベーステンプレートのデフォルト値を使用）
 )
 # 生成したHTMLを output/index.html として書き出す
 (OUTPUT_DIR / "index.html").write_text(index_html, encoding="utf-8")
 print("📚 トップページ: output/index.html を生成")
+
+# サイトマップにトップページの情報を追加
+sitemap_pages.append({
+    "url": f"{base_url}/index.html",
+    "lastmod": datetime.now().strftime('%Y-%m-%d')
+})
 
 # ──────────────────────────────
 # 3. aboutページの生成
@@ -125,10 +142,25 @@ if about_md_path.exists():
     template = env.get_template("about.page.html")
     rendered_html = template.render(
         content=html_content,
-        site_name=site_name
+        site_name=site_name,
+        description=post.metadata.get("description") # aboutページのメタディスクリプションを渡す
     )
     # 生成したHTMLを output/about.html として書き出す
     (OUTPUT_DIR / "about.html").write_text(rendered_html, encoding="utf-8")
     print(f"👤 アバウトページ: output/about.html を生成")
+
+    # サイトマップにアバウトページの情報を追加
+    sitemap_pages.append({
+        "url": f"{base_url}/about.html",
+        "lastmod": datetime.now().strftime('%Y-%m-%d')
+    })
 else:
     print("⚠️ posts/about.md が見つかりません。aboutページはスキップされました。")
+
+# ──────────────────────────────
+# 4. サイトマップの生成
+# ──────────────────────────────
+sitemap_template = env.get_template("sitemap.xml.j2")
+sitemap_xml = sitemap_template.render(pages=sitemap_pages)
+(OUTPUT_DIR / "sitemap.xml").write_text(sitemap_xml, encoding="utf-8")
+print("🗺️ サイトマップ: output/sitemap.xml を生成")
