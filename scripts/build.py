@@ -62,7 +62,14 @@ for md_file in POSTS_DIR.glob("*.md"):
         continue
 
     # frontmatterライブラリを使って、Markdownファイルからメタデータと本文を分離して読み込む
-    post = frontmatter.load(md_file)
+    # YAMLの解析エラーなどが発生した場合でも、スクリプト全体が停止しないようにする
+    try:
+        post = frontmatter.load(md_file)
+    except Exception as e:
+        print(f"❌ エラー: {md_file.relative_to(ROOT)} のメタデータの読み込みに失敗しました。")
+        print(f"   詳細: {e}")
+        continue # エラーがあったファイルはスキップして、次のファイルの処理を続ける
+
     metadata = post.metadata  # ---で囲まれた部分（title, dateなど）
     content = post.content  # 本文
 
