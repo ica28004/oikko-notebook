@@ -83,7 +83,8 @@ for md_file in POSTS_DIR.glob("*.md"):
         title=metadata.get("title", md_file.stem),
         date=metadata.get("date"),
         content=html_body,
-        site_name=site_name
+        site_name=site_name,
+        description=metadata.get("description") # メタディスクリプションをテンプレートに渡す
     )
     # 変換後のHTMLをファイルに書き出す
     output_path = articles_output_dir / f"{md_file.stem}.html"
@@ -115,7 +116,8 @@ index_template = env.get_template("index.page.html")  # トップページ用の
 # テンプレートに記事リストとサイト名を渡して、最終的なHTMLを生成する
 index_html = index_template.render(
     articles=articles,
-    site_name=site_name
+    site_name=site_name,
+    # descriptionは渡さない（ベーステンプレートのデフォルト値を使用）
 )
 # 生成したHTMLを output/index.html として書き出す
 (OUTPUT_DIR / "index.html").write_text(index_html, encoding="utf-8")
@@ -140,7 +142,8 @@ if about_md_path.exists():
     template = env.get_template("about.page.html")
     rendered_html = template.render(
         content=html_content,
-        site_name=site_name
+        site_name=site_name,
+        description=post.metadata.get("description") # aboutページのメタディスクリプションを渡す
     )
     # 生成したHTMLを output/about.html として書き出す
     (OUTPUT_DIR / "about.html").write_text(rendered_html, encoding="utf-8")
