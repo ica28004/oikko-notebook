@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.oikko.com/articles/006-seo-improvements.html</loc>
+    <lastmod>2025-07-06</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blog.oikko.com/articles/002-metadata-support.html</loc>
     <lastmod>2025-07-02</lastmod>
   </url>

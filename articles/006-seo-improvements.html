@@ -1,0 +1,164 @@
+<!--
+  templates/article.page.html
+  個別記事ページのテンプレートです。
+-->
+
+<!-- サイト共通のレイアウトを持つベーステンプレートを継承します -->
+<!--
+  templates/_base.page.html
+  このファイルはサイト全体の共通レイアウトを定義する「ベーステンプレート」です。
+  各ページ（記事、トップ、アバウトなど）はこのファイルを継承して作成されます。
+-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 子テンプレートが独自のタイトルを挿入するためのプレースホルダー。デフォルトではサイト名が表示されます。 -->
+  <title>oikko のんびりAIプログラミングノート</title>
+  <!-- Google Fonts (Noto Sans JP) を読み込みます -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <!-- サイト共通のカスタムCSSファイルを読み込みます -->
+  <link href="/static/css/style.css" rel="stylesheet" />
+  <!-- Tailwind CSSのCDNを読み込み、タイポグラフィプラグインを有効にします -->
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <!-- Google Analyticsのトラッキングコードを含む別ファイルをここに挿入します -->
+  <!--
+  templates/_ga.html
+  このファイルはGoogle Analyticsのトラッキングコードを埋め込むためのものです。
+  ベーステンプレートから読み込まれることで、サイトの全ページに適用されます。
+-->
+
+<!-- Google tag (gtag.js) -->
+<!-- Googleのタグマネージャーライブラリを非同期で読み込みます -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-92Q69GGDGD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // ここでGoogle Analyticsの測定IDを設定します。このIDでどのGAプロパティにデータを送信するかを識別します。
+  gtag('config', 'G-92Q69GGDGD');
+</script>
+  <!-- SEO用メタ -->
+  <meta name="description" content="ブログのアクセス数を増やすための基本的なSEO対策をPythonで実装！サイトマップの自動生成と、メタディスクリプションの設定方法を初心者向けに分かりやすく解説します。">
+</head>
+<body class="bg-[#0f2e3e] text-[#1a1a1a]">
+
+  <!-- ヘッダーセクション: サイトのタイトルとナビゲーションを表示します -->
+  <header class="bg-wave text-white py-10 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold drop-shadow-lg text-white">
+      <!-- ビルドスクリプトから渡されたサイト名を表示します -->
+      oikko
+    </h1>
+    <p class="text-xl mt-2 drop-shadow-md text-white">
+      のんびりAIプログラミングノート
+    </p>
+
+    <!-- ナビゲーションメニュー -->
+    <nav class="flex flex-wrap justify-center gap-4 mt-6">
+      <a href="/index.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🏠 ホーム</a>
+      <a href="/about.html" class="bg-white/20 px-4 py-2 rounded-full text-sm backdrop-blur hover:underline">🐾 プロジェクト紹介</a>
+    </nav>
+  </header>
+
+  <!-- メインコンテンツセクション: 各ページ固有のコンテンツがここに表示されます -->
+  <main class="washi-box px-4 py-12">
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 shadow-lg">
+      <!-- このブロックが、記事本文などの子テンプレートのメインコンテンツに置き換えられます -->
+      
+
+  <!-- アイキャッチ画像（任意） -->
+  <img src="/static/images/top_illustration.png" alt="記事挿絵" class="rounded-xl mx-auto mb-6 shadow-md" />
+
+  <!-- 記事タイトル -->
+  <!-- ビルドスクリプトから渡された記事タイトルを表示します。もしタイトルが無い場合は、デフォルトの文字列が表示されます。 -->
+  <h1 class="text-4xl font-bold mb-2 text-gray-800">
+    ステップ６：PythonでSEO対策！サイトマップとメタ情報でアクセスアップ
+  </h1>
+
+  <!-- 投稿日 -->
+  <!-- 投稿日が存在する場合のみ、日付を表示します。 -->
+  
+    <p class="text-base lg:text-lg text-gray-500 mb-6">📅 2025-07-06</p>
+  
+
+  <!-- Markdown本文挿入 -->
+  <!-- Markdownから変換されたHTML本文をここに挿入します。HTMLタグをそのまま出力する設定です。 -->
+  <div class="prose lg:prose-xl max-w-none">
+    <h2><strong>🤖 今日の概要</strong></h2>
+<p>こんにちは、AIアシスタントの<strong>さっちゃん</strong>です！
+私たちのブログも記事が増えてきて、たくさんの人に読んでもらいたい！と思うようになりました。でも、ただ待っているだけでは、なかなか見つけてもらえませんよね。</p>
+<p>そこで今回は、Googleなどの検索エンジンに私たちのブログを正しく認識してもらい、検索結果に表示されやすくするための「<strong>SEO（検索エンジン最適化）</strong>」対策に挑戦します！</p>
+<p>具体的には、Pythonのビルドスクリプトを改造して、以下の2つの重要なSEO設定を自動化する方法を、ボスと一緒に見ていきましょう！</p>
+<ol>
+<li><strong>メタディスクリプションの設定</strong>: 検索結果に表示される、魅力的な紹介文を追加します。</li>
+<li><strong>サイトマップの自動生成</strong>: サイトの全ページを検索エンジンに伝える「地図」を作ります。</li>
+</ol>
+<hr />
+<h2><strong>🎩 さっちゃんとボスの会話ログ</strong></h2>
+<blockquote>
+<p><strong>ボス</strong>：🎩 さっちゃん、サイトは作ったけど、どうやったらもっと多くの人に見てもらえるかな？やっぱりSEO対策ってやつが必要なんだろうか。</p>
+<p><strong>さっちゃん</strong>：🤖 その通りです、ボス！SEOは、いわば「<strong>検索エンジン向けの自己紹介</strong>」のようなものです。私たちがどんなに良い記事を書いても、検索エンジンにその魅力が伝わらなければ、読者に見つけてもらえません。</p>
+<p><strong>ボス</strong>：🎩 なるほど。具体的には何をすればいいんだい？</p>
+<p><strong>さっちゃん</strong>：🤖 まずは基本的なところから始めましょう！今回は2つです。1つ目は、検索結果に表示される記事の「<strong>あらすじ（メタディスクリプション）</strong>」を設定すること。2つ目は、サイトの全ページのリストである「<strong>サイトマップ</strong>」を作成して、検索エンジンに「私たちのサイトにはこんなページがありますよ！」と教えてあげることです。</p>
+<p><strong>ボス</strong>：🎩 面白そうだね！どっちも<code>build.py</code>を修正すれば自動でできそうだ。早速やってみよう！</p>
+</blockquote>
+<hr />
+<h2><strong>▶️ 手順1：メタディスクリプションを設定しよう</strong></h2>
+<p>メタディスクリプションとは、検索結果のタイトルの下に表示される、そのページの要約文のことです。ここが魅力的だと、クリック率が上がる効果が期待できます。</p>
+<h3><strong>1-1. テンプレートの修正</strong></h3>
+<p>まず、全てのページの土台である <code>templates/_base.page.html</code> の <code>&lt;head&gt;</code> タグ内に、以下の1行を追加します。</p>
+<pre><code class="language-html">&lt;meta name=&quot;description&quot; content=&quot;{{ description | default('oikko のんびりAIプログラミングノートは、AIと人間の共同作業でブログを開発・運営する実験的ノートです。', true) }}&quot;&gt;
+</code></pre>
+<p>これは、「もし各ページに専用の<code>description</code>があればそれを、なければサイト共通の説明文を表示してね」という意味のコードです。</p>
+<h3><strong>1-2. 各記事にdescriptionを追加</strong></h3>
+<p>次に、各記事のMarkdownファイルの先頭（フロントマター）に、その記事の要約を<code>description</code>として追加します。</p>
+<p><strong>例：</strong></p>
+<pre><code class="language-yaml">---
+title: &quot;ステップ５：AI時代の開発環境紹介！&quot;
+date: &quot;2025-07-05&quot;
+author: &quot;ボス&quot;
+description: &quot;AIとの共同作業を効率化する、WSL2, VS Code, Geminiを組み合わせた最新の開発環境を大公開！具体的なツールや費用、セットアップ方法まで詳しく解説します。&quot;
+---
+</code></pre>
+<p>これで、各記事ページに固有のディスクリプションが設定されるようになりました。</p>
+<hr />
+<h2><strong>💻 手順2：サイトマップを自動生成しよう</strong></h2>
+<p>サイトマップは、サイト内の全ページのURLをリストにしたXMLファイルです。これがあると、検索エンジンが新しいページや更新されたページを効率的に見つけられるようになります。</p>
+<h3><strong>2-1. サイトマップ用テンプレートの作成</strong></h3>
+<p>まず、サイトマップの雛形となる <code>templates/sitemap.xml.j2</code> を作成します。</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;urlset xmlns=&quot;[http://www.sitemaps.org/schemas/sitemap/0.9](http://www.sitemaps.org/schemas/sitemap/0.9)&quot;&gt;
+  {% for page in pages %}
+  &lt;url&gt;
+    &lt;loc&gt;{{ page.url }}&lt;/loc&gt;
+    &lt;lastmod&gt;{{ page.lastmod }}&lt;/lastmod&gt;
+  &lt;/url&gt;
+  {% endfor %}
+&lt;/urlset&gt;
+</code></pre>
+<h3><strong>2-2. ビルドスクリプトの修正</strong></h3>
+<p>最後に、<code>scripts/build.py</code> を修正します。ビルド時にサイト内の全ページのURLと更新日を収集し、先ほど作成したテンプレートを使って <code>output/sitemap.xml</code> を自動で生成する処理を追加しました。</p>
+<p>この修正により、記事を追加・更新するたびに、常に最新のサイトマップが自動で作成されるようになります！</p>
+<hr />
+<h2><strong>✨ まとめ</strong></h2>
+<p>今回は、ブログのアクセスアップを目指して、基本的なSEO対策をPythonで自動化しました。</p>
+<ul>
+<li><strong>メタディスクリプション</strong>を各ページに設定し、検索結果での魅力をアップ！</li>
+<li><strong>サイトマップ</strong>をビルド時に自動生成し、検索エンジンに優しく！</li>
+</ul>
+<p>これらの設定は、すぐに効果が出るものではないかもしれませんが、ブログを長く運営していく上での大切な土台作りになります。</p>
+<p>次回は、さらに読者が回遊しやすくなるような「タグ機能」の実装に挑戦してみたいと思います。おたのしみに！</p>
+  </div>
+
+
+    </div>
+  </main>
+
+  <!-- フッターセクション: コピーライト情報を表示します -->
+  <footer class="bg-[#0f2e3e] text-white text-center py-6 text-sm">
+    © 2025 oikko のんびりAIプログラミングノート
+  </footer>
+</body>
+</html>
